@@ -1,0 +1,389 @@
+VERSION "HIPBNYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY/4/%%%/4/'%**4YYY///"
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+
+BS_:
+
+BU_: AI UMB VCU DIS RES BMS PC
+
+
+BO_ 1280 VCU2LOG_Dynamics1: 8 VCU
+ SG_ Speed_actual_kmh : 0|8@1+ (1,0) [0|255] "km/h" Vector__XXX
+ SG_ Speed_target_kmh : 8|8@1+ (1,0) [0|255] "km/h" Vector__XXX
+ SG_ Steer_actual_deg : 16|8@1- (0.5,0) [-64|63.5] "deg" Vector__XXX
+ SG_ Steer_target_deg : 24|8@1- (0.5,0) [-64|63.5] "deg" Vector__XXX
+ SG_ Brake_actual_pct : 32|8@1+ (1,0) [0|100] "%" Vector__XXX
+ SG_ Brake_target_pct : 40|8@1+ (1,0) [0|100] "%" Vector__XXX
+ SG_ Drive_trq_actual_pct : 48|8@1+ (1,0) [0|100] "%" Vector__XXX
+ SG_ Drive_trq_target_pct : 56|8@1+ (1,0) [0|100] "%" Vector__XXX
+
+BO_ 1281 AI2LOG_Dynamics2: 6 AI
+ SG_ Accel_longitudinal_mps2 : 0|16@1- (0.00195313,0) [-64|63.998] "m/s^2" Vector__XXX
+ SG_ Accel_lateral_mps2 : 16|16@1- (0.00195313,0) [-64|63.998] "m/s^2" Vector__XXX
+ SG_ Yaw_rate_degps : 32|16@1- (0.0078125,0) [-256|255.992] "deg/s" Vector__XXX
+
+BO_ 1282 VCU2LOG_Status: 5 VCU
+ SG_ State_ASSI : 0|3@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ State_EBS : 3|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ State_AMI : 5|3@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ State_steering : 8|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ State_service_brake : 9|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ Lap_counter : 11|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ Cones_count_actual : 15|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Cones_count_all : 23|17@1+ (1,0) [0|131071] "" Vector__XXX
+
+BO_ 1296 AI2VCU_Status: 8 AI
+ SG_ DIRECTION_REQUEST : 14|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ ESTOP_REQUEST : 8|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MISSION_STATUS : 12|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ HANDSHAKE : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ LAP_COUNTER : 16|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ CONES_COUNT_ACTUAL : 24|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ CONES_COUNT_ALL : 32|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ VEH_SPEED_ACTUAL_kmh : 48|8@1+ (1,0) [0|255] "km/h" Vector__XXX
+ SG_ VEH_SPEED_DEMAND_kmh : 56|8@1+ (1,0) [0|255] "km/h" Vector__XXX
+
+BO_ 1297 AI2VCU_Drive_F: 8 AI
+ SG_ FRONT_AXLE_TRQ_REQUEST_Nm : 0|16@1+ (0.1,0) [0|195] "Nm" Vector__XXX
+ SG_ FRONT_MOTOR_SPEED_MAX_rpm : 16|16@1+ (1,0) [0|4000] "rpm" Vector__XXX
+
+BO_ 1298 AI2VCU_Drive_R: 8 AI
+ SG_ REAR_AXLE_TRQ_REQUEST_Nm : 0|16@1+ (0.1,0) [0|195] "Nm" Vector__XXX
+ SG_ REAR_MOTOR_SPEED_MAX_rpm : 16|16@1+ (1,0) [0|4000] "rpm" Vector__XXX
+
+BO_ 1299 AI2VCU_Steer: 8 AI
+ SG_ STEER_REQUEST_deg : 0|16@1- (0.1,0) [-27.2|27.2] "deg" Vector__XXX
+
+BO_ 1300 AI2VCU_Brake: 8 AI
+ SG_ HYD_PRESSURE_REQUEST_pct : 0|8@1+ (0.5,0) [0|100] "%" Vector__XXX
+
+BO_ 1312 VCU2AI_Status: 8 VCU
+ SG_ AS_SWITCH_STATUS : 9|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ TS_SWITCH_STATUS : 10|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ AS_STATE : 16|4@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ STEERING_STATUS : 12|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ SHUTDOWN_REQUEST : 8|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ FAULT_STATUS : 24|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ WARNING_STATUS : 25|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ HANDSHAKE : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ AMI_STATE : 20|4@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ GO_SIGNAL : 11|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ AI_ESTOP_REQUEST : 40|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ HVIL_OPEN_FAULT : 41|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ HVIL_SHORT_FAULT : 42|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ EBS_FAULT : 43|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ OFFBOARD_CHARGER_FAULT : 44|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ AI_COMMS_LOST : 45|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ WARN_BATT_TEMP_HIGH : 32|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ WARN_BATT_SOC_LOW : 33|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ RESERVED_1 : 48|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ RESERVED_2 : 49|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ AUTONOMOUS_BRAKING_FAULT : 46|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MISSION_STATUS_FAULT : 47|1@1+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 1313 VCU2AI_Drive_F: 8 VCU
+ SG_ FRONT_AXLE_TRQ_Nm : 0|16@1- (0.1,0) [-195|195] "Nm" Vector__XXX
+ SG_ FRONT_AXLE_TRQ_MAX_Nm : 32|16@1+ (0.1,0) [0|195] "Nm" Vector__XXX
+ SG_ FRONT_AXLE_TRQ_REQUEST_Nm : 16|16@1+ (0.1,0) [0|195] "Nm" Vector__XXX
+
+BO_ 1314 VCU2AI_Drive_R: 8 VCU
+ SG_ REAR_AXLE_TRQ_Nm : 0|16@1- (0.1,0) [-195|195] "Nm" Vector__XXX
+ SG_ REAR_AXLE_TRQ_REQUEST_Nm : 16|16@1- (0.1,0) [-195|195] "Nm" Vector__XXX
+ SG_ REAR_AXLE_TRQ_MAX_Nm : 32|16@1+ (0.1,0) [0|195] "Nm" Vector__XXX
+
+BO_ 1315 VCU2AI_Steer: 8 VCU
+ SG_ STEER_ANGLE_deg : 0|16@1- (0.1,0) [-27.2|27.2] "deg" Vector__XXX
+ SG_ STEER_ANGLE_MAX_deg : 16|16@1+ (0.1,0) [0|27.2] "deg" Vector__XXX
+ SG_ STEER_ANGLE_REQUEST_deg : 32|16@1- (0.1,0) [-27.2|27.2] "deg" Vector__XXX
+
+BO_ 1316 VCU2AI_Brake: 8 VCU
+ SG_ HYD_PRESSURE_pct : 0|8@1+ (0.5,0) [0|100] "%" Vector__XXX
+ SG_ HYD_PRESSURE_REQUEST_pct : 8|8@1+ (0.5,0) [0|100] "%" Vector__XXX
+
+BO_ 1317 VCU2AI_Wheel_speeds: 8 VCU
+ SG_ FL_WHEEL_SPEED_rpm : 0|16@1+ (1,0) [0|1250] "rpm" Vector__XXX
+ SG_ FR_WHEEL_SPEED_rpm : 16|16@1+ (1,0) [0|1250] "rpm" Vector__XXX
+ SG_ RL_WHEEL_SPEED_rpm : 32|16@1+ (1,0) [0|1250] "rpm" Vector__XXX
+ SG_ RR_WHEEL_SPEED_rpm : 48|16@1+ (1,0) [0|1250] "rpm" Vector__XXX
+
+BO_ 1318 VCU2AI_Wheel_counts: 8 VCU
+ SG_ FL_PULSE_COUNT : 0|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ FR_PULSE_COUNT : 16|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ RL_PULSE_COUNT : 32|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ RR_PULSE_COUNT : 48|16@1+ (1,0) [0|65535] "" Vector__XXX
+
+BO_ 1319 VCU2AI_Drive_motor_data: 8 VCU
+ SG_ MOTOR_F_TEMP_degC : 0|8@1+ (1,-30) [-30|225] "degC" Vector__XXX
+ SG_ MOTOR_R_TEMP_degC : 8|8@1+ (1,-30) [-30|225] "degC" Vector__XXX
+ SG_ MOTOR_F_CURR_0A05 : 16|16@1- (0.05,0) [-1638.4|1638.35] "A" Vector__XXX
+ SG_ MOTOR_R_CURR_0A05 : 32|16@1- (0.05,0) [-1638.4|1638.35] "A" Vector__XXX
+
+BO_ 1320 VCU2AI_Diagnostics: 8 VCU
+ SG_ BATTERY_SOC_pc : 0|8@1+ (1,0) [0|100] "%" Vector__XXX
+ SG_ BATTERY_MAX_CELL_TEMP_degC : 8|8@1+ (1,-30) [-30|225] "degC" Vector__XXX
+ SG_ FAULT_CELL_OVER_TEMP : 16|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ FAULT_CELL_OVER_VOLT : 17|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ FAULT_CELL_UNDER_VOLT : 18|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ FAULT_CHG_AUX_OPEN : 19|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ FAULT_CHG_AUX_SHORT : 20|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ FAULT_FUSE_ACTIVATION : 21|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ FAULT_HVPOS1_OPEN : 22|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ FAULT_HVPOS2_OPEN : 23|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ FAULT_PRECHG_OPEN : 24|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ FAULT_VOLTAGE_DISAGREE : 25|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ FAULT_PACK_OVER_CURRENT : 26|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ FAULT_MEASUREMENT : 27|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ FAULT_LOW_SOC : 28|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ SYS_ACTION : 32|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ SM_CONTACTOR : 40|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ SM_MAIN : 44|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ SM_MC_DRV : 48|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ SM_DRV_AUTO : 52|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ SM_EBS : 56|4@1+ (1,0) [0|15] "" Vector__XXX
+
+
+CM_ BU_ AI "AI Computer (NVIDIA Drive PX2)";
+CM_ BU_ UMB "Umbilical controller";
+CM_ BU_ VCU "Vehicle Control Unit";
+CM_ BU_ DIS "Display screen";
+CM_ BU_ RES "Remote Emergency Stop";
+CM_ BO_ 1280 "VCU T1";
+CM_ BO_ 1282 "VCU T1";
+CM_ BO_ 1296 "VCU R1";
+CM_ SG_ 1296 DIRECTION_REQUEST "Requested vehicle direction";
+CM_ SG_ 1296 ESTOP_REQUEST "Shutdown request to VCU";
+CM_ SG_ 1296 MISSION_STATUS "Autonomous mission status";
+CM_ SG_ 1296 HANDSHAKE "Handshake";
+CM_ SG_ 1296 LAP_COUNTER "Lap counter";
+CM_ SG_ 1296 CONES_COUNT_ACTUAL "Number of cones detected";
+CM_ SG_ 1296 CONES_COUNT_ALL "Total number of cones detected";
+CM_ SG_ 1296 VEH_SPEED_ACTUAL_kmh "Actual vehicle speed";
+CM_ SG_ 1296 VEH_SPEED_DEMAND_kmh "Demanded vehicle speed";
+CM_ BO_ 1297 "VCU R1";
+CM_ SG_ 1297 FRONT_AXLE_TRQ_REQUEST_Nm "Requested front axle torque";
+CM_ SG_ 1297 FRONT_MOTOR_SPEED_MAX_rpm "Front motor speed limit";
+CM_ BO_ 1298 "VCU R1";
+CM_ SG_ 1298 REAR_AXLE_TRQ_REQUEST_Nm "Requested rear axle torque";
+CM_ SG_ 1298 REAR_MOTOR_SPEED_MAX_rpm "Rear motor speed limit";
+CM_ BO_ 1299 "VCU R1";
+CM_ SG_ 1299 STEER_REQUEST_deg "Requested steer angle";
+CM_ BO_ 1300 "VCU R1";
+CM_ SG_ 1300 HYD_PRESSURE_REQUEST_pct "Requested hydraulic brake pressure";
+CM_ BO_ 1312 "VCU T1";
+CM_ SG_ 1312 AS_SWITCH_STATUS "Autonomous System switch status";
+CM_ SG_ 1312 TS_SWITCH_STATUS "Tractive System switch status";
+CM_ SG_ 1312 AS_STATE "State of the Autonomous System";
+CM_ SG_ 1312 STEERING_STATUS "State of the steering system";
+CM_ SG_ 1312 SHUTDOWN_REQUEST "Shutdown request to AI";
+CM_ SG_ 1312 FAULT_STATUS "System fault status";
+CM_ SG_ 1312 WARNING_STATUS "System warning status";
+CM_ SG_ 1312 HANDSHAKE "Handshake";
+CM_ SG_ 1312 AMI_STATE "State of the Mission Indicator";
+CM_ SG_ 1312 GO_SIGNAL "Autonomous System \"Go\" signal";
+CM_ SG_ 1312 AI_ESTOP_REQUEST "AI system E-stop request";
+CM_ SG_ 1312 HVIL_OPEN_FAULT "HVIL open-circuit fault";
+CM_ SG_ 1312 HVIL_SHORT_FAULT "HVIL short-circuit fault";
+CM_ SG_ 1312 EBS_FAULT "EBS fault";
+CM_ SG_ 1312 OFFBOARD_CHARGER_FAULT "Offboard charger fault";
+CM_ SG_ 1312 AI_COMMS_LOST "AI CAN communications fault";
+CM_ SG_ 1312 WARN_BATT_TEMP_HIGH "High traction battery temperature warning";
+CM_ SG_ 1312 WARN_BATT_SOC_LOW "Low traction battery SOC warning";
+CM_ SG_ 1312 RESERVED_1 "";
+CM_ SG_ 1312 RESERVED_2 "";
+CM_ SG_ 1312 AUTONOMOUS_BRAKING_FAULT "Braking in Autonomous Driving mode fault";
+CM_ SG_ 1312 MISSION_STATUS_FAULT "Autonomous mission status fault";
+CM_ BO_ 1313 "VCU T1";
+CM_ SG_ 1313 FRONT_AXLE_TRQ_Nm "Current front axle torque";
+CM_ SG_ 1313 FRONT_AXLE_TRQ_MAX_Nm "Maximum front axle drive torque";
+CM_ SG_ 1313 FRONT_AXLE_TRQ_REQUEST_Nm "Requested front axle torque";
+CM_ BO_ 1314 "VCU T1";
+CM_ SG_ 1314 REAR_AXLE_TRQ_Nm "Current rear axle torque";
+CM_ SG_ 1314 REAR_AXLE_TRQ_REQUEST_Nm "Requested rear axle torque";
+CM_ SG_ 1314 REAR_AXLE_TRQ_MAX_Nm "Maximum rear axle drive torque";
+CM_ BO_ 1315 "VCU T1";
+CM_ SG_ 1315 STEER_ANGLE_deg "Current steering angle";
+CM_ SG_ 1315 STEER_ANGLE_MAX_deg "Maximum allowable steering angle";
+CM_ SG_ 1315 STEER_ANGLE_REQUEST_deg "Requested steering angle";
+CM_ BO_ 1316 "VCU T1";
+CM_ SG_ 1316 HYD_PRESSURE_pct "Current hydraulic brake pressure";
+CM_ SG_ 1316 HYD_PRESSURE_REQUEST_pct "Requested hydraulic brake pressure";
+CM_ BO_ 1317 "VCU T1";
+CM_ SG_ 1317 FL_WHEEL_SPEED_rpm "Front left wheel speed";
+CM_ SG_ 1317 FR_WHEEL_SPEED_rpm "Front right wheel speed";
+CM_ SG_ 1317 RL_WHEEL_SPEED_rpm "Rear left wheel speed";
+CM_ SG_ 1317 RR_WHEEL_SPEED_rpm "Rear right wheel speed";
+CM_ BO_ 1318 "VCU T1";
+CM_ SG_ 1318 FL_PULSE_COUNT "Front left wheel speed pulse count";
+CM_ SG_ 1318 FR_PULSE_COUNT "Front right wheel speed pulse count";
+CM_ SG_ 1318 RL_PULSE_COUNT "Rear left wheel speed pulse count";
+CM_ SG_ 1318 RR_PULSE_COUNT "Rear right wheel speed pulse count";
+CM_ SG_ 1319 MOTOR_F_TEMP_degC "Front drive motor temperature";
+CM_ SG_ 1319 MOTOR_R_TEMP_degC "Rear drive motor temperature";
+CM_ SG_ 1319 MOTOR_F_CURR_0A05 "Front drive motor current";
+CM_ SG_ 1319 MOTOR_R_CURR_0A05 "Rear drive motor current";
+CM_ SG_ 1320 BATTERY_SOC_pc "Battery state of charge";
+CM_ SG_ 1320 BATTERY_MAX_CELL_TEMP_degC "Maximum battery cell temperature";
+CM_ SG_ 1320 FAULT_CELL_OVER_TEMP "Battery cell over-temperature fault";
+CM_ SG_ 1320 FAULT_CELL_OVER_VOLT "Battery cell over-voltage fault";
+CM_ SG_ 1320 FAULT_CELL_UNDER_VOLT "Battery cell under-voltage fault";
+CM_ SG_ 1320 FAULT_CHG_AUX_OPEN "Charge aux contactor open circuit fault";
+CM_ SG_ 1320 FAULT_CHG_AUX_SHORT "Charge aux contactor short circuit fault";
+CM_ SG_ 1320 FAULT_FUSE_ACTIVATION "Fuse activation fault";
+CM_ SG_ 1320 FAULT_HVPOS1_OPEN "Front drive motor contactor fault";
+CM_ SG_ 1320 FAULT_HVPOS2_OPEN "Rear drive motor contactor fault";
+CM_ SG_ 1320 FAULT_PRECHG_OPEN "Pre-charge contactor fault";
+CM_ SG_ 1320 FAULT_VOLTAGE_DISAGREE "Battery voltage measurement disagreement fault";
+CM_ SG_ 1320 FAULT_PACK_OVER_CURRENT "Battery pack over-current fault";
+CM_ SG_ 1320 FAULT_MEASUREMENT "BMS measurement fault";
+CM_ SG_ 1320 FAULT_LOW_SOC "Low battery SOC fault";
+CM_ SG_ 1320 SYS_ACTION "System action";
+CM_ SG_ 1320 SM_CONTACTOR "Contactor state machine state";
+CM_ SG_ 1320 SM_MAIN "Main state machine state";
+CM_ SG_ 1320 SM_MC_DRV "Drive motor controller state machine state";
+CM_ SG_ 1320 SM_DRV_AUTO "Autonomous driving state machine state";
+CM_ SG_ 1320 SM_EBS "Emergency braking system state machine state";
+BA_DEF_  "BusType" STRING ;
+BA_DEF_ SG_  "GenSigStartValue" FLOAT -3.4e+038 3.4e+038;
+BA_DEF_ SG_  "GenSigAutoGenSnd" ENUM  "No","Yes";
+BA_DEF_ SG_  "GenSigAutoGenDsp" ENUM  "No","Yes";
+BA_DEF_ SG_  "GenSigEnvVarType" ENUM  "int","float","undef";
+BA_DEF_ SG_  "GenSigEVName" STRING ;
+BA_DEF_ BU_  "GenNodAutoGenSnd" ENUM  "No","Yes";
+BA_DEF_ BU_  "GenNodAutoGenDsp" ENUM  "No","Yes";
+BA_DEF_  "GenEnvVarEndingDsp" STRING ;
+BA_DEF_  "GenEnvVarEndingSnd" STRING ;
+BA_DEF_  "GenEnvVarPrefix" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 5;
+BA_DEF_DEF_  "BusType" "CAN";
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_DEF_DEF_  "GenSigAutoGenSnd" "";
+BA_DEF_DEF_  "GenSigAutoGenDsp" "";
+BA_DEF_DEF_  "GenSigEnvVarType" "undef";
+BA_DEF_DEF_  "GenSigEVName" "";
+BA_DEF_DEF_  "GenNodAutoGenSnd" "Yes";
+BA_DEF_DEF_  "GenNodAutoGenDsp" "Yes";
+BA_DEF_DEF_  "GenEnvVarEndingDsp" "Dsp";
+BA_DEF_DEF_  "GenEnvVarEndingSnd" "Snd";
+BA_DEF_DEF_  "GenEnvVarPrefix" "Env";
+BA_DEF_DEF_  "GenMsgCycleTime" 5;
+BA_ "GenSigStartValue" SG_ 1280 Speed_actual_kmh 0;
+BA_ "GenSigStartValue" SG_ 1280 Speed_target_kmh 0;
+BA_ "GenSigStartValue" SG_ 1280 Steer_actual_deg 0;
+BA_ "GenSigStartValue" SG_ 1280 Steer_target_deg 0;
+BA_ "GenSigStartValue" SG_ 1280 Brake_actual_pct 0;
+BA_ "GenSigStartValue" SG_ 1280 Brake_target_pct 0;
+BA_ "GenSigStartValue" SG_ 1280 Drive_trq_actual_pct 0;
+BA_ "GenSigStartValue" SG_ 1280 Drive_trq_target_pct 0;
+BA_ "GenSigStartValue" SG_ 1281 Accel_longitudinal_mps2 0;
+BA_ "GenSigStartValue" SG_ 1281 Accel_lateral_mps2 0;
+BA_ "GenSigStartValue" SG_ 1281 Yaw_rate_degps 0;
+BA_ "GenSigStartValue" SG_ 1282 State_ASSI 0;
+BA_ "GenSigStartValue" SG_ 1282 State_EBS 0;
+BA_ "GenSigStartValue" SG_ 1282 State_AMI 0;
+BA_ "GenSigStartValue" SG_ 1282 State_steering 0;
+BA_ "GenSigStartValue" SG_ 1282 State_service_brake 0;
+BA_ "GenSigStartValue" SG_ 1282 Lap_counter 0;
+BA_ "GenSigStartValue" SG_ 1282 Cones_count_actual 0;
+BA_ "GenSigStartValue" SG_ 1282 Cones_count_all 0;
+BA_ "GenSigStartValue" SG_ 1296 DIRECTION_REQUEST 0;
+BA_ "GenSigStartValue" SG_ 1296 ESTOP_REQUEST 0;
+BA_ "GenSigStartValue" SG_ 1296 MISSION_STATUS 0;
+BA_ "GenSigStartValue" SG_ 1296 HANDSHAKE 0;
+BA_ "GenSigStartValue" SG_ 1296 LAP_COUNTER 0;
+BA_ "GenSigStartValue" SG_ 1296 CONES_COUNT_ACTUAL 0;
+BA_ "GenSigStartValue" SG_ 1296 CONES_COUNT_ALL 0;
+BA_ "GenSigStartValue" SG_ 1297 FRONT_AXLE_TRQ_REQUEST_Nm 0;
+BA_ "GenSigStartValue" SG_ 1297 FRONT_MOTOR_SPEED_MAX_rpm 0;
+BA_ "GenSigStartValue" SG_ 1298 REAR_AXLE_TRQ_REQUEST_Nm 0;
+BA_ "GenSigStartValue" SG_ 1298 REAR_MOTOR_SPEED_MAX_rpm 0;
+BA_ "GenSigStartValue" SG_ 1299 STEER_REQUEST_deg 0;
+BA_ "GenSigStartValue" SG_ 1300 HYD_PRESSURE_REQUEST_pct 0;
+BA_ "GenSigStartValue" SG_ 1312 AS_SWITCH_STATUS 0;
+BA_ "GenSigStartValue" SG_ 1312 TS_SWITCH_STATUS 0;
+BA_ "GenSigStartValue" SG_ 1312 AS_STATE 0;
+BA_ "GenSigStartValue" SG_ 1312 STEERING_STATUS 0;
+BA_ "GenSigStartValue" SG_ 1312 SHUTDOWN_REQUEST 0;
+BA_ "GenSigStartValue" SG_ 1312 FAULT_STATUS 0;
+BA_ "GenSigStartValue" SG_ 1312 WARNING_STATUS 0;
+BA_ "GenSigStartValue" SG_ 1312 HANDSHAKE 0;
+BA_ "GenSigStartValue" SG_ 1312 AMI_STATE 0;
+BA_ "GenSigStartValue" SG_ 1313 FRONT_AXLE_TRQ_Nm 0;
+BA_ "GenSigStartValue" SG_ 1313 FRONT_AXLE_TRQ_MAX_Nm 0;
+BA_ "GenSigStartValue" SG_ 1313 FRONT_AXLE_TRQ_REQUEST_Nm 0;
+BA_ "GenSigStartValue" SG_ 1314 REAR_AXLE_TRQ_Nm 0;
+BA_ "GenSigStartValue" SG_ 1314 REAR_AXLE_TRQ_REQUEST_Nm 0;
+BA_ "GenSigStartValue" SG_ 1314 REAR_AXLE_TRQ_MAX_Nm 0;
+BA_ "GenSigStartValue" SG_ 1315 STEER_ANGLE_deg 0;
+BA_ "GenSigStartValue" SG_ 1315 STEER_ANGLE_MAX_deg 0;
+BA_ "GenSigStartValue" SG_ 1315 STEER_ANGLE_REQUEST_deg 0;
+BA_ "GenSigStartValue" SG_ 1316 HYD_PRESSURE_pct 0;
+BA_ "GenSigStartValue" SG_ 1316 HYD_PRESSURE_REQUEST_pct 0;
+BA_ "GenSigStartValue" SG_ 1317 FL_WHEEL_SPEED_rpm 0;
+BA_ "GenSigStartValue" SG_ 1317 FR_WHEEL_SPEED_rpm 0;
+BA_ "GenSigStartValue" SG_ 1317 RL_WHEEL_SPEED_rpm 0;
+BA_ "GenSigStartValue" SG_ 1317 RR_WHEEL_SPEED_rpm 0;
+VAL_ 1282 State_ASSI 1 "OFF" 2 "READY" 3 "DRIVING" 4 "EMERGENCY_BRAKE" 5 "FINISH" ;
+VAL_ 1282 State_EBS 1 "UNAVAILABLE" 2 "ARMED" 3 "TRIGGERED" ;
+VAL_ 1282 State_AMI 1 "ACCELERATION" 2 "SKIDPAD" 3 "AUTOCROSS" 4 "TRACK_DRIVE" 5 "BRAKE_TEST" 6 "INSPECTION" ;
+VAL_ 1282 State_steering 0 "OFF" 1 "ON" ;
+VAL_ 1282 State_service_brake 1 "DISENGAGED" 2 "ENGAGED" 3 "AVAILABLE" ;
+VAL_ 1296 DIRECTION_REQUEST 0 "NEUTRAL" 1 "FORWARD" 2 "REVERSE" ;
+VAL_ 1296 ESTOP_REQUEST 0 "NO SHUTDOWN" 1 "SHUTDOWN REQUESTED" ;
+VAL_ 1296 MISSION_STATUS 0 "NOT SELECTED" 1 "SELECTED" 2 "RUNNING" 3 "FINISHED" ;
+VAL_ 1312 AS_SWITCH_STATUS 0 "OFF" 1 "ON" ;
+VAL_ 1312 TS_SWITCH_STATUS 0 "OFF" 1 "ON" ;
+VAL_ 1312 AS_STATE 1 "AS_OFF" 2 "AS_READY" 3 "AS_DRIVING" 4 "EMERGENCY_BRAKE" 5 "AS_FINISHED" ;
+VAL_ 1312 STEERING_STATUS 0 "OFF" 1 "ACTIVE" ;
+VAL_ 1312 SHUTDOWN_REQUEST 0 "NO SHUTDOWN" 1 "SHUTDOWN REQUESTED" ;
+VAL_ 1312 FAULT_STATUS 0 "NO FAULT" 1 "FAULT DETECTED" ;
+VAL_ 1312 WARNING_STATUS 0 "NO WARNING" 1 "WARNING ACTIVE" ;
+VAL_ 1312 AMI_STATE 0 "NOT SELECTED" 1 "ACCELERATION" 2 "SKIDPAD" 3 "AUTOCROSS" 4 "TRACK_DRIVE" 5 "BRAKE_TEST" 6 "INSPECTION" ;
+VAL_ 1312 GO_SIGNAL 0 "NO GO" 1 "GO" ;
+VAL_ 1312 AI_ESTOP_REQUEST 0 "FALSE" 1 "TRUE" ;
+VAL_ 1312 HVIL_OPEN_FAULT 0 "FALSE" 1 "TRUE" ;
+VAL_ 1312 HVIL_SHORT_FAULT 0 "FALSE" 1 "TRUE" ;
+VAL_ 1312 EBS_FAULT 0 "FALSE" 1 "TRUE" ;
+VAL_ 1312 OFFBOARD_CHARGER_FAULT 0 "FALSE" 1 "TRUE" ;
+VAL_ 1312 AI_COMMS_LOST 0 "FALSE" 1 "TRUE" ;
+VAL_ 1312 WARN_BATT_TEMP_HIGH 0 "FALSE" 1 "TRUE" ;
+VAL_ 1312 WARN_BATT_SOC_LOW 0 "FALSE" 1 "TRUE" ;
+VAL_ 1320 FAULT_CELL_OVER_TEMP 0 "NO FAULT" 1 "FAULT DETECTED" ;
+VAL_ 1320 FAULT_CELL_OVER_VOLT 0 "NO FAULT" 1 "FAULT DETECTED" ;
+VAL_ 1320 FAULT_CELL_UNDER_VOLT 0 "NO FAULT" 1 "FAULT DETECTED" ;
+VAL_ 1320 FAULT_CHG_AUX_OPEN 0 "NO FAULT" 1 "FAULT DETECTED" ;
+VAL_ 1320 FAULT_CHG_AUX_SHORT 0 "NO FAULT" 1 "FAULT DETECTED" ;
+VAL_ 1320 FAULT_FUSE_ACTIVATION 0 "NO FAULT" 1 "FAULT DETECTED" ;
+VAL_ 1320 FAULT_HVPOS1_OPEN 0 "NO FAULT" 1 "FAULT DETECTED" ;
+VAL_ 1320 FAULT_HVPOS2_OPEN 0 "NO FAULT" 1 "FAULT DETECTED" ;
+VAL_ 1320 FAULT_PRECHG_OPEN 0 "NO FAULT" 1 "FAULT DETECTED" ;
+VAL_ 1320 FAULT_VOLTAGE_DISAGREE 0 "NO FAULT" 1 "FAULT DETECTED" ;
+VAL_ 1320 FAULT_PACK_OVER_CURRENT 0 "NO FAULT" 1 "FAULT DETECTED" ;
+VAL_ 1320 FAULT_MEASUREMENT 0 "NO FAULT" 1 "FAULT DETECTED" ;
+VAL_ 1320 FAULT_LOW_SOC 0 "NO FAULT" 1 "FAULT DETECTED" ;
+VAL_ 1320 SYS_ACTION 0 "INITIALISE" 1 "CHARGE" 2 "DRIVE_AUTO" 3 "DRIVE_MAN" 4 "SHUTDOWN" ;
+VAL_ 1320 SM_CONTACTOR 0 "SHUTDOWN" 1 "PRECHG_CHECK" 2 "CHG_AUX" 3 "DRIVE" 4 "FAULT" ;
+VAL_ 1320 SM_MAIN 0 "SHUTDOWN_OFF" 1 "INITIAL_ACTIONS" 2 "POWER_ON_SELF_TEST" 3 "POWERTRAIN_ENABLE" 4 "DRIVE_AUTONOMOUS" 5 "DRIVE_MANUAL" 6 "SHUTDOWN_ACTIONS" 7 "CHARGE" 8 "AUX" ;
+VAL_ 1320 SM_MC_DRV 1 "IDLE" 2 "DRIVE_STOP_SHUTDOWN" 3 "DRIVE_START_SHUTDOWN" 4 "DRIVE_START_SWITCH_ON" 5 "DRIVE_START_ENABLE_OP" 6 "RUNNING" 7 "END_START_SHUTDOWN" 8 "END_STOP_SHUTDOWN" 9 "ERROR" ;
+VAL_ 1320 SM_DRV_AUTO 1 "AS_OFF" 2 "AS_READY" 3 "AS_DRIVING" 4 "EMERGENCY_BRAKE" 5 "AS_FINISHED" ;
+VAL_ 1320 SM_EBS 0 "IDLE" 1 "CHARGE" 2 "HOLD" 3 "RECHARGE" 4 "FAULT" ;
