@@ -5,7 +5,7 @@
 
 ## NOTE:
 
-### This initial commit of the **FS-AI_API** repository contains the source code for the *<u>**2019**</u>* software revision version of the IMechE FS-AI ADS-DV.
+### This *draft* commit of the **FS-AI_API** repository contains the source code for the 2021 software revision version of the IMechE FS-AI ADS-DV.
 
 It has been provided as a reference for teams to start implementing their vehicle interface code.
 
@@ -13,7 +13,7 @@ Previously the 2019 interface was provided as a library 'libfs-ai_api_amd64.a' i
 
 Source code for the library is now released under the MIT license so it may be compiled for any Linux architecture and modified if required.
 
-The 2021 FS-AI ADS-DV has an updated CAN interface and the interface library will be updated to suit as soon as it is tested.
+The 2021 FS-AI ADS-DV has an updated CAN interface.
 
 Further work will be done to improve the quality of the Console & Tester example programmes.
 
@@ -83,10 +83,11 @@ NOTE: This function must be called frequently enough to prevent the CAN timeout 
 
 
 ## Further Documentation
-Please refer to the full specification document for full information on the FS-AI ADS-DV CAN interface: [ads-dv-software-interface-specification-v2-0.pdf](./Docs/ads-dv-software-interface-specification-v2-0.pdf).
+Please refer to the full specification document for full information on the FS-AI ADS-DV CAN interface: [ADS-DV Software Interface Specification-v3.0.pdf](./Docs/ADS-DV_Software_Interface_Specification_v3.0.pdf).
 
-(also published on the IMechE website as: [https://www.imeche.org/docs/default-source/1-oscar/formula-student/2019/fs-ai/ads-dv-software-interface-specification-v2-0.pdf](https://www.imeche.org/docs/default-source/1-oscar/formula-student/2019/fs-ai/ads-dv-software-interface-specification-v2-0.pdf) ).
+(also published on the IMechE website as: https://www.imeche.org/docs/default-source/1-oscar/formula-student/2021/forms/ai/ads-dv-software-interface-specification-v3-0.pdf?sfvrsn=2 ).
 
-The referenced CAN database can be found here: [adsdv_2019_vcu_ai_interface_v2.dbc](./Docs/adsdv_2019_vcu_ai_interface_v2.dbc).
+The referenced CAN database can be found here: [adsdv_2021_vcu_ai_interface_v1.dbc](./Docs/adsdv_2021_vcu_ai_interface_v1.dbc).
 
-This software library exposes only those aspects of the full interface that are deemed essential for the 2019 Formula Student AI DDT competition using the FS-AI ADS-DV.
+This software library exposes only those aspects of the full interface that are deemed essential for the 2021 Formula Student AI DDT competition using the FS-AI ADS-DV.
+
