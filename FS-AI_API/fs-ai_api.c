@@ -89,7 +89,7 @@ static pthread_mutex_t can_read_mutex = PTHREAD_MUTEX_INITIALIZER;
 static struct timespec last_set, this_set;
 
 // tx frames
-static struct can_frame AI2LOG_Dynamics2	= {0x501,6};
+// static struct can_frame AI2LOG_Dynamics2	= {0x501,6};	// now sent by PCAN-GPS
 static struct can_frame AI2VCU_Status		= {0x510,8};
 static struct can_frame AI2VCU_Drive_F		= {0x511,8};
 static struct can_frame AI2VCU_Drive_R		= {0x512,8};
@@ -803,15 +803,16 @@ void fs_ai_api_ai2vcu_set_data(fs_ai_api_ai2vcu *data) {
 	// load the CAN frames with the validated data
 	volatile pack_16_t temp;
 	
-	temp.sword = (int16_t)((512.0f)*((9.80665f*0.001f*(float)IMU_Acceleration_X_mG)));
-	AI2LOG_Dynamics2.data[0] = temp.bytes[0];
-	AI2LOG_Dynamics2.data[1] = temp.bytes[1];
-	temp.sword = (int16_t)((512.0f)*((9.80665f*0.001f*(float)IMU_Acceleration_Y_mG)));
-	AI2LOG_Dynamics2.data[2] = temp.bytes[0];
-	AI2LOG_Dynamics2.data[3] = temp.bytes[1];
-	temp.sword = (int16_t)((128.0f)*((float)IMU_Rotation_Z_degps));
-	AI2LOG_Dynamics2.data[4] = temp.bytes[0];
-	AI2LOG_Dynamics2.data[5] = temp.bytes[1];
+	// frame now sent by PCAN-GPS
+	// temp.sword = (int16_t)((512.0f)*((9.80665f*0.001f*(float)IMU_Acceleration_X_mG)));
+	// AI2LOG_Dynamics2.data[0] = temp.bytes[0];
+	// AI2LOG_Dynamics2.data[1] = temp.bytes[1];
+	// temp.sword = (int16_t)((512.0f)*((9.80665f*0.001f*(float)IMU_Acceleration_Y_mG)));
+	// AI2LOG_Dynamics2.data[2] = temp.bytes[0];
+	// AI2LOG_Dynamics2.data[3] = temp.bytes[1];
+	// temp.sword = (int16_t)((128.0f)*((float)IMU_Rotation_Z_degps));
+	// AI2LOG_Dynamics2.data[4] = temp.bytes[0];
+	// AI2LOG_Dynamics2.data[5] = temp.bytes[1];
 	
 	AI2VCU_Status.data[0] = (uint8_t)(AI2VCU_HANDSHAKE_BIT & 0x01);
 	AI2VCU_Status.data[1] = (uint8_t)(((AI2VCU_DIRECTION_REQUEST & 0x03) << 6) + ((AI2VCU_MISSION_STATUS & 0x03) << 4) + (AI2VCU_ESTOP_REQUEST & 0x01));
@@ -870,7 +871,7 @@ void fs_ai_api_ai2vcu_set_data(fs_ai_api_ai2vcu *data) {
 	if(interval_ns > 4000000) // enforce maximum call rate of approx. 4ms
 	{
 		// send the CAN frames
-		can_send(&AI2LOG_Dynamics2);
+		// can_send(&AI2LOG_Dynamics2);	// now sent by PCAN-GPS
 		can_send(&AI2VCU_Status);
 		can_send(&AI2VCU_Drive_F);
 		can_send(&AI2VCU_Drive_R);

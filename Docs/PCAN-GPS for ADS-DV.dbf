@@ -1,0 +1,397 @@
+//******************************BUSMASTER Messages and signals Database ******************************//
+
+[DATABASE_VERSION] 1.3
+
+[PROTOCOL] CAN
+
+[BUSMASTER_VERSION] [3.2.2]
+[NUMBER_OF_MESSAGES] 23
+
+[START_MSG] AI2LOG_Dynamics2,1281,6,3,1,S,AI
+[START_SIGNALS] Accel_longitudinal_mps2,16,1,0,I,32767,-32768,1,0,0.00195313,m/s^2,,
+[START_SIGNALS] Accel_lateral_mps2,16,3,0,I,32767,-32768,1,0,0.00195313,m/s^2,,
+[START_SIGNALS] Yaw_rate_degps,16,5,0,I,32767,-32768,1,0,0.0078125,deg/s,,
+[END_MSG]
+
+[START_MSG] BMC_Acceleration,1536,8,6,1,S,
+[START_SIGNALS] Acceleration_X,16,1,0,I,5115,-5115,1,0,3.91,mG,,
+[START_SIGNALS] Acceleration_Y,16,3,0,I,5115,-5115,1,0,3.91,mG,,
+[START_SIGNALS] Acceleration_Z,16,5,0,I,5115,-5115,1,0,3.91,mG,,
+[START_SIGNALS] Temperature,8,7,0,I,127,-128,1,24,0.5,°C,,
+[START_SIGNALS] VerticalAxis,2,8,0,U,3,0,1,0,1,,,
+[VALUE_DESCRIPTION] "undefined",0
+[VALUE_DESCRIPTION] "X Axis",1
+[VALUE_DESCRIPTION] "Y Axis",2
+[VALUE_DESCRIPTION] "Z Axis",3
+[START_SIGNALS] Orientation,3,8,2,U,7,0,1,0,1,,,
+[VALUE_DESCRIPTION] "flat",0
+[VALUE_DESCRIPTION] "flat upside down",1
+[VALUE_DESCRIPTION] "landscape left",2
+[VALUE_DESCRIPTION] "landscape right",3
+[VALUE_DESCRIPTION] "portrait",4
+[VALUE_DESCRIPTION] "portrait upside down",5
+[END_MSG]
+
+[START_MSG] BMC_MagneticField,1576,6,3,1,S,
+[START_SIGNALS] MagneticField_X,16,1,0,I,32767,-32768,1,0,0.3,µT,,
+[START_SIGNALS] MagneticField_Y,16,3,0,I,32767,-32768,1,0,0.3,µT,,
+[START_SIGNALS] MagneticField_Z,16,5,0,I,32767,-32768,1,0,0.3,µT,,
+[END_MSG]
+
+[START_MSG] L3GD20_Rotation_A,1552,8,2,1,S,
+[START_SIGNALS] Rotation_X,32,1,0,F,4000,-4000,1,0,1,°/s,,
+[START_SIGNALS] Rotation_Y,32,5,0,F,4000,-4000,1,0,1,°/s,,
+[END_MSG]
+
+[START_MSG] L3GD20_Rotation_B,1553,4,1,1,S,
+[START_SIGNALS] Rotation_Z,32,1,0,F,4000,-4000,1,0,1,°/s,,
+[END_MSG]
+
+[START_MSG] GPS_Status,1568,3,3,1,S,
+[START_SIGNALS] GPS_AntennaStatus,8,1,0,U,255,0,1,0,1,,,
+[VALUE_DESCRIPTION] "INIT",0
+[VALUE_DESCRIPTION] "DONTKNOW",1
+[VALUE_DESCRIPTION] "OK",2
+[VALUE_DESCRIPTION] "SHORT",3
+[VALUE_DESCRIPTION] "OPEN",4
+[START_SIGNALS] GPS_NumSatellites,8,2,0,U,255,0,1,0,1,,,
+[START_SIGNALS] GPS_NavigationMethod,8,3,0,U,255,0,1,0,1,,,
+[VALUE_DESCRIPTION] "INIT",0
+[VALUE_DESCRIPTION] "NONE",1
+[VALUE_DESCRIPTION] "2D",2
+[VALUE_DESCRIPTION] "3D",3
+[END_MSG]
+
+[START_MSG] GPS_CourseSpeed,1569,8,2,1,S,
+[START_SIGNALS] GPS_Course,32,1,0,F,3.4e+038,-3.4e+038,1,0,1,°,,
+[START_SIGNALS] GPS_Speed,32,5,0,F,3.4e+038,-3.4e+038,1,0,1,km/h,,
+[END_MSG]
+
+[START_MSG] GPS_PositionLongitude,1570,7,3,1,S,
+[START_SIGNALS] GPS_Longitude_Degree,16,5,0,U,359,0,1,0,1,°,,
+[START_SIGNALS] GPS_Longitude_Minutes,32,1,0,F,3.4e+038,-3.4e+038,1,0,1,',,
+[START_SIGNALS] GPS_IndicatorEW,8,7,0,U,255,0,1,0,1,,,
+[VALUE_DESCRIPTION] "INIT",0
+[VALUE_DESCRIPTION] "East",69
+[VALUE_DESCRIPTION] "North",78
+[VALUE_DESCRIPTION] "South",83
+[VALUE_DESCRIPTION] "West",87
+[END_MSG]
+
+[START_MSG] GPS_PositionLatitude,1571,7,3,1,S,
+[START_SIGNALS] GPS_Latitude_Degree,16,5,0,U,359,0,1,0,1,°,,
+[START_SIGNALS] GPS_Latitude_Minutes,32,1,0,F,3.4e+038,-3.4e+038,1,0,1,',,
+[START_SIGNALS] GPS_IndicatorNS,8,7,0,U,255,0,1,0,1,,,
+[VALUE_DESCRIPTION] "INIT",0
+[VALUE_DESCRIPTION] "East",69
+[VALUE_DESCRIPTION] "North",78
+[VALUE_DESCRIPTION] "South",83
+[VALUE_DESCRIPTION] "West",87
+[END_MSG]
+
+[START_MSG] GPS_PositionAltitude,1572,4,1,1,S,
+[START_SIGNALS] GPS_Altitude,32,1,0,F,3.4e+038,-3.4e+038,1,0,1,m,,
+[END_MSG]
+
+[START_MSG] GPS_Delusions_A,1573,8,2,1,S,
+[START_SIGNALS] GPS_PDOP,32,1,0,F,3.4e+038,-3.4e+038,1,0,1,,,
+[START_SIGNALS] GPS_HDOP,32,5,0,F,3.4e+038,-3.4e+038,1,0,1,,,
+[END_MSG]
+
+[START_MSG] GPS_Delusions_B,1574,4,1,1,S,
+[START_SIGNALS] GPS_VDOP,32,1,0,F,3.4e+038,-3.4e+038,1,0,1,,,
+[END_MSG]
+
+[START_MSG] GPS_DateTime,1575,6,6,1,S,
+[START_SIGNALS] UTC_Year,8,1,0,U,255,0,1,0,1,,,
+[START_SIGNALS] UTC_Month,8,2,0,U,255,0,1,0,1,,,
+[START_SIGNALS] UTC_DayOfMonth,8,3,0,U,255,0,1,0,1,,,
+[START_SIGNALS] UTC_Hour,8,4,0,U,255,0,1,0,1,,,
+[START_SIGNALS] UTC_Minute,8,5,0,U,255,0,1,0,1,,,
+[START_SIGNALS] UTC_Second,8,6,0,U,255,0,1,0,1,,,
+[END_MSG]
+
+[START_MSG] IO,1584,1,6,1,S,
+[START_SIGNALS] Din1_Status,1,1,0,B,1,0,1,0,1,,,
+[VALUE_DESCRIPTION] "Off",0
+[VALUE_DESCRIPTION] "On",1
+[START_SIGNALS] Din2_Status,1,1,1,B,1,0,1,0,1,,,
+[VALUE_DESCRIPTION] "Off",0
+[VALUE_DESCRIPTION] "On",1
+[START_SIGNALS] Dout_Status,1,1,2,B,1,0,1,0,1,,,
+[VALUE_DESCRIPTION] "Off",0
+[VALUE_DESCRIPTION] "On",1
+[START_SIGNALS] SD_Present,1,1,3,B,1,0,1,0,1,,,
+[VALUE_DESCRIPTION] "False",0
+[VALUE_DESCRIPTION] "True",1
+[START_SIGNALS] GPS_PowerStatus,1,1,4,B,1,0,1,0,1,,,
+[VALUE_DESCRIPTION] "Off",0
+[VALUE_DESCRIPTION] "On",1
+[START_SIGNALS] Device_ID,3,1,5,U,7,0,1,0,1,,,
+[END_MSG]
+
+[START_MSG] RTC_DateTime,1600,8,7,1,S,
+[START_SIGNALS] RTC_Sec,8,1,0,U,255,0,1,0,1,,,
+[START_SIGNALS] RTC_Min,8,2,0,U,255,0,1,0,1,,,
+[START_SIGNALS] RTC_Hour,8,3,0,U,255,0,1,0,1,,,
+[START_SIGNALS] RTC_DayOfWeek,8,4,0,U,255,0,1,0,1,,,
+[VALUE_DESCRIPTION] "Monday",0
+[VALUE_DESCRIPTION] "Tuesday",1
+[VALUE_DESCRIPTION] "Wednesday",2
+[VALUE_DESCRIPTION] "Thursday",3
+[VALUE_DESCRIPTION] "Friday",4
+[VALUE_DESCRIPTION] "Saturday",5
+[VALUE_DESCRIPTION] "Sunday",6
+[START_SIGNALS] RTC_DayOfMonth,8,5,0,U,255,0,1,0,1,,,
+[START_SIGNALS] RTC_Month,8,6,0,U,255,0,1,0,1,,,
+[START_SIGNALS] RTC_Year,16,7,0,U,65535,0,1,0,1,,,
+[END_MSG]
+
+[START_MSG] Out_IO,1616,1,2,1,S,
+[START_SIGNALS] Dout_Set,1,1,0,B,1,0,1,0,1,,,
+[VALUE_DESCRIPTION] "Off",0
+[VALUE_DESCRIPTION] "On",1
+[START_SIGNALS] GPS_SetPower,1,1,1,B,1,0,1,0,1,,,
+[VALUE_DESCRIPTION] "Off",0
+[VALUE_DESCRIPTION] "On",1
+[END_MSG]
+
+[START_MSG] Out_PowerOff,1617,1,1,1,S,
+[START_SIGNALS] Device_PowerOff,1,1,0,B,1,0,1,0,1,,,
+[VALUE_DESCRIPTION] "False",0
+[VALUE_DESCRIPTION] "True",1
+[END_MSG]
+
+[START_MSG] Out_Gyro,1618,1,1,1,S,
+[START_SIGNALS] Gyro_SetScale,2,1,0,U,3,0,1,0,1,°/s,,
+[VALUE_DESCRIPTION] "±250 °/s",0
+[VALUE_DESCRIPTION] "±500 °/s",1
+[VALUE_DESCRIPTION] "±2000 °/s",2
+[VALUE_DESCRIPTION] "±2000 °/s",3
+[END_MSG]
+
+[START_MSG] Out_BMC_AccScale,1619,1,1,1,S,
+[START_SIGNALS] Acc_SetScale,3,1,0,U,7,0,1,0,1,,,
+[VALUE_DESCRIPTION] "±2 G",1
+[VALUE_DESCRIPTION] "±4 G",2
+[VALUE_DESCRIPTION] "±8 G",3
+[VALUE_DESCRIPTION] "±16 G",4
+[END_MSG]
+
+[START_MSG] Out_SaveConfig,1620,1,1,1,S,
+[START_SIGNALS] Config_SaveToEEPROM,1,1,0,B,1,0,1,0,1,,,
+[VALUE_DESCRIPTION] "False",0
+[VALUE_DESCRIPTION] "True",1
+[END_MSG]
+
+[START_MSG] Out_RTC_SetTime,1621,8,7,1,S,
+[START_SIGNALS] RTC_SetSec,8,1,0,U,59,0,1,0,1,,,
+[START_SIGNALS] RTC_SetMin,8,2,0,U,59,0,1,0,1,,,
+[START_SIGNALS] RTC_SetHour,8,3,0,U,23,0,1,0,1,,,
+[START_SIGNALS] RTC_SetDayOfWeek,8,4,0,U,6,0,1,0,1,,,
+[VALUE_DESCRIPTION] "Monday",0
+[VALUE_DESCRIPTION] "Tuesday",1
+[VALUE_DESCRIPTION] "Wednesday",2
+[VALUE_DESCRIPTION] "Thursday",3
+[VALUE_DESCRIPTION] "Friday",4
+[VALUE_DESCRIPTION] "Saturday",5
+[VALUE_DESCRIPTION] "Sunday",6
+[START_SIGNALS] RTC_SetDayOfMonth,8,5,0,U,31,1,1,0,1,,,
+[START_SIGNALS] RTC_SetMonth,8,6,0,U,12,1,1,0,1,,,
+[VALUE_DESCRIPTION] "January",1
+[VALUE_DESCRIPTION] "February",2
+[VALUE_DESCRIPTION] "March",3
+[VALUE_DESCRIPTION] "April",4
+[VALUE_DESCRIPTION] "May",5
+[VALUE_DESCRIPTION] "June",6
+[VALUE_DESCRIPTION] "July",7
+[VALUE_DESCRIPTION] "August",8
+[VALUE_DESCRIPTION] "September",9
+[VALUE_DESCRIPTION] "October",10
+[VALUE_DESCRIPTION] "November",11
+[VALUE_DESCRIPTION] "December",12
+[START_SIGNALS] RTC_SetYear,16,7,0,U,2099,1900,1,0,1,,,
+[END_MSG]
+
+[START_MSG] Out_RTC_TimeFromGPS,1622,1,1,1,S,
+[START_SIGNALS] RTC_SetTimeFromGPS,1,1,0,B,1,0,1,0,1,,,
+[VALUE_DESCRIPTION] "False",0
+[VALUE_DESCRIPTION] "True",1
+[END_MSG]
+
+[START_MSG] Out_Acc_FastCalibration,1623,4,4,1,S,
+[START_SIGNALS] Acc_SetCalibTarget_X,2,1,0,U,3,0,1,0,1,,,
+[VALUE_DESCRIPTION] "0 G",0
+[VALUE_DESCRIPTION] "+1 G",1
+[VALUE_DESCRIPTION] "-1 G",2
+[START_SIGNALS] Acc_SetCalibTarget_Y,2,2,0,U,3,0,1,0,1,,,
+[VALUE_DESCRIPTION] "0 G",0
+[VALUE_DESCRIPTION] "+1 G",1
+[VALUE_DESCRIPTION] "-1 G",2
+[START_SIGNALS] Acc_SetCalibTarget_Z,2,3,0,U,3,0,1,0,1,,,
+[VALUE_DESCRIPTION] "0 G",0
+[VALUE_DESCRIPTION] "+1 G",1
+[VALUE_DESCRIPTION] "-1 G",2
+[START_SIGNALS] Acc_StartFastCalib,1,4,0,B,1,0,1,0,1,,,
+[VALUE_DESCRIPTION] "False",0
+[VALUE_DESCRIPTION] "True",1
+[END_MSG]
+
+[START_VALUE_TABLE]
+[END_VALUE_TABLE]
+
+[NODE] AI
+
+[START_DESC]
+[START_DESC_NET]
+[END_DESC_NET]
+
+[START_DESC_NODE]
+[END_DESC_NODE]
+
+[START_DESC_MSG]
+[END_DESC_MSG]
+
+[START_DESC_SIG]
+1620 S Config_SaveToEEPROM "Saves sensor ranges and calibration targets to EERPOM to restore them after startup";
+1622 S RTC_SetTimeFromGPS "Note: GPS time does not know the day of week!";
+[END_DESC_SIG]
+[END_DESC]
+
+[START_PARAM]
+[START_PARAM_NET]
+"BusType",STRING,"CAN"
+[END_PARAM_NET]
+
+[START_PARAM_NODE]
+[END_PARAM_NODE]
+
+[START_PARAM_MSG]
+[END_PARAM_MSG]
+
+[START_PARAM_SIG]
+"GenSigStartValue",FLOAT,1.17549e-038,1.17549e-038,3.4e+038
+[END_PARAM_SIG]
+
+[START_PARAM_NODE_RX_SIG]
+[END_PARAM_NODE_RX_SIG]
+
+[START_PARAM_NODE_TX_MSG]
+[END_PARAM_NODE_TX_MSG]
+[END_PARAM]
+
+[START_PARAM_VAL]
+[START_PARAM_NET_VAL]
+"BusType","CAN"
+[END_PARAM_NET_VAL]
+
+[START_PARAM_NODE_VAL]
+[END_PARAM_NODE_VAL]
+
+[START_PARAM_MSG_VAL]
+[END_PARAM_MSG_VAL]
+
+[START_PARAM_SIG_VAL]
+1536,S,Acceleration_X,"GenSigStartValue",0
+1536,S,Acceleration_Y,"GenSigStartValue",0
+1536,S,Acceleration_Z,"GenSigStartValue",0
+1536,S,Temperature,"GenSigStartValue",-48
+1536,S,VerticalAxis,"GenSigStartValue",0
+1536,S,Orientation,"GenSigStartValue",0
+1576,S,MagneticField_X,"GenSigStartValue",0
+1576,S,MagneticField_Y,"GenSigStartValue",0
+1576,S,MagneticField_Z,"GenSigStartValue",0
+1552,S,Rotation_X,"GenSigStartValue",0
+1552,S,Rotation_Y,"GenSigStartValue",0
+1553,S,Rotation_Z,"GenSigStartValue",0
+1568,S,GPS_AntennaStatus,"GenSigStartValue",0
+1568,S,GPS_NumSatellites,"GenSigStartValue",0
+1568,S,GPS_NavigationMethod,"GenSigStartValue",0
+1569,S,GPS_Course,"GenSigStartValue",0
+1569,S,GPS_Speed,"GenSigStartValue",0
+1570,S,GPS_Longitude_Degree,"GenSigStartValue",0
+1570,S,GPS_Longitude_Minutes,"GenSigStartValue",0
+1570,S,GPS_IndicatorEW,"GenSigStartValue",0
+1571,S,GPS_Latitude_Degree,"GenSigStartValue",0
+1571,S,GPS_Latitude_Minutes,"GenSigStartValue",0
+1571,S,GPS_IndicatorNS,"GenSigStartValue",0
+1572,S,GPS_Altitude,"GenSigStartValue",0
+1573,S,GPS_PDOP,"GenSigStartValue",0
+1573,S,GPS_HDOP,"GenSigStartValue",0
+1574,S,GPS_VDOP,"GenSigStartValue",0
+1575,S,UTC_Year,"GenSigStartValue",0
+1575,S,UTC_Month,"GenSigStartValue",0
+1575,S,UTC_DayOfMonth,"GenSigStartValue",0
+1575,S,UTC_Hour,"GenSigStartValue",0
+1575,S,UTC_Minute,"GenSigStartValue",0
+1575,S,UTC_Second,"GenSigStartValue",0
+1584,S,Din1_Status,"GenSigStartValue",0
+1584,S,Din2_Status,"GenSigStartValue",0
+1584,S,Dout_Status,"GenSigStartValue",0
+1584,S,SD_Present,"GenSigStartValue",0
+1584,S,GPS_PowerStatus,"GenSigStartValue",0
+1584,S,Device_ID,"GenSigStartValue",0
+1600,S,RTC_Sec,"GenSigStartValue",0
+1600,S,RTC_Min,"GenSigStartValue",0
+1600,S,RTC_Hour,"GenSigStartValue",0
+1600,S,RTC_DayOfWeek,"GenSigStartValue",0
+1600,S,RTC_DayOfMonth,"GenSigStartValue",0
+1600,S,RTC_Month,"GenSigStartValue",0
+1600,S,RTC_Year,"GenSigStartValue",0
+1616,S,Dout_Set,"GenSigStartValue",0
+1616,S,GPS_SetPower,"GenSigStartValue",1
+1617,S,Device_PowerOff,"GenSigStartValue",0
+1618,S,Gyro_SetScale,"GenSigStartValue",0
+1619,S,Acc_SetScale,"GenSigStartValue",1
+1620,S,Config_SaveToEEPROM,"GenSigStartValue",0
+1621,S,RTC_SetSec,"GenSigStartValue",0
+1621,S,RTC_SetMin,"GenSigStartValue",0
+1621,S,RTC_SetHour,"GenSigStartValue",0
+1621,S,RTC_SetDayOfWeek,"GenSigStartValue",0
+1621,S,RTC_SetDayOfMonth,"GenSigStartValue",0
+1621,S,RTC_SetMonth,"GenSigStartValue",0
+1621,S,RTC_SetYear,"GenSigStartValue",0
+1622,S,RTC_SetTimeFromGPS,"GenSigStartValue",0
+1623,S,Acc_SetCalibTarget_X,"GenSigStartValue",0
+1623,S,Acc_SetCalibTarget_Y,"GenSigStartValue",0
+1623,S,Acc_SetCalibTarget_Z,"GenSigStartValue",0
+1623,S,Acc_StartFastCalib,"GenSigStartValue",0
+[END_PARAM_SIG_VAL]
+
+[END_PARAM_VAL]
+
+
+[START_NOT_SUPPORTED]
+[END_NOT_SUPPORTED]
+
+[START_NOT_PROCESSED]
+	PZ_
+	ON_QRS_
+	ON_
+	INY_
+	PNG_QRS_
+	PNG_
+	SVYGRE
+	ON_QRS_QRS_
+	RI_QNGN_
+	RAIINE_QNGN_
+	FTGLCR_
+	FTGLCR_INY_
+	ON_QRS_FTGLCR_
+	ON_FTGLCR_
+	FVT_GLCR_ERS_
+	INY_GNOYR_
+	FVT_TEBHC_
+	FVT_INYGLCR_
+	FVTGLCR_INYGLCR_
+	OB_GK_OH_
+	ON_QRS_ERY_
+	ON_ERY_
+	ON_QRS_QRS_ERY_
+	OH_FT_ERY_
+	OH_RI_ERY_
+	OH_OB_ERY_
+	FT_ZHY_INY_
+OF_:
+
+[END_NOT_PROCESSED]

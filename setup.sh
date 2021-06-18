@@ -10,8 +10,7 @@
 
 
 # can0 hardware at 500kbps
-sudo ip link set can0 type can bitrate 500000
-sudo ip link set can0 up
+sudo ip link set up can0 type can bitrate 500000
 
 # vcan0 for testing without hardware
 sudo ip link add dev vcan0 type vcan
