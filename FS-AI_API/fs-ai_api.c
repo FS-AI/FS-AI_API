@@ -78,8 +78,6 @@ typedef union can_data_t {
 static boolean_e debug_mode = FALSE;
 static boolean_e simulate_mode = FALSE;
 
-static volatile uint32_t loop_count = 0;
-
 static const float MOTOR_RATIO = 3.5f;
 static const float MOTOR_MAX_RPM = 4000.0f;
 
@@ -139,26 +137,7 @@ static struct can_frame PCAN_GPS_GPS_Delusions_B;
 static struct can_frame PCAN_GPS_GPS_DateTime;
 
 // static local data
-static volatile uint16_t VCU2AI_Status_count = 0;
-static volatile uint16_t VCU2AI_Drive_F_count = 0;
-static volatile uint16_t VCU2AI_Drive_R_count = 0;
-static volatile uint16_t VCU2AI_Steer_count = 0;
-static volatile uint16_t VCU2AI_Brake_count = 0;
-static volatile uint16_t VCU2AI_Wheel_speeds_count = 0;
-static volatile uint16_t VCU2AI_Wheel_counts_count = 0;
-
-static volatile uint16_t PCAN_GPS_BMC_Acceleration_count = 0;
-static volatile uint16_t PCAN_GPS_BMC_MagneticField_count = 0;
-static volatile uint16_t PCAN_GPS_L3GD20_Rotation_A_count = 0;
-static volatile uint16_t PCAN_GPS_L3GD20_Rotation_B_count = 0;
-static volatile uint16_t PCAN_GPS_GPS_Status_count = 0;
-static volatile uint16_t PCAN_GPS_GPS_CourseSpeed_count = 0;
-static volatile uint16_t PCAN_GPS_GPS_Longitude_count = 0;
-static volatile uint16_t PCAN_GPS_GPS_Latitude_count = 0;
-static volatile uint16_t PCAN_GPS_GPS_Altitude_count = 0;
-static volatile uint16_t PCAN_GPS_GPS_Delusions_A_count = 0;
-static volatile uint16_t PCAN_GPS_GPS_Delusions_B_count = 0;
-static volatile uint16_t PCAN_GPS_GPS_DateTime_count = 0;
+static can_stats_struct_t can_stats;
 
 static volatile boolean_e VCU2AI_Status_fresh = FALSE;
 static volatile boolean_e VCU2AI_Drive_F_fresh = FALSE;
@@ -167,7 +146,6 @@ static volatile boolean_e VCU2AI_Steer_fresh = FALSE;
 static volatile boolean_e VCU2AI_Brake_fresh = FALSE;
 static volatile boolean_e VCU2AI_Wheel_speeds_fresh = FALSE;
 static volatile boolean_e VCU2AI_Wheel_counts_fresh = FALSE;
-
 static volatile boolean_e PCAN_GPS_BMC_Acceleration_fresh = FALSE;
 static volatile boolean_e PCAN_GPS_BMC_MagneticField_fresh = FALSE;
 static volatile boolean_e PCAN_GPS_L3GD20_Rotation_A_fresh = FALSE;
@@ -325,7 +303,7 @@ static void *can_read_thread() {
 				VCU2AI_Status.data[6] = read_frame.data[6];
 				VCU2AI_Status.data[7] = read_frame.data[7];
 				VCU2AI_Status_fresh = TRUE;
-				VCU2AI_Status_count++;
+				can_stats.VCU2AI_Status_count++;
 				break;
 			}
 			case VCU2AI_DRIVE_F_ID : {
@@ -338,7 +316,7 @@ static void *can_read_thread() {
 				VCU2AI_Drive_F.data[6] = read_frame.data[6];
 				VCU2AI_Drive_F.data[7] = read_frame.data[7];
 				VCU2AI_Drive_F_fresh = TRUE;
-				VCU2AI_Drive_F_count++;
+				can_stats.VCU2AI_Drive_F_count++;
 				break;
 			}
 			case VCU2AI_DRIVE_R_ID : {
@@ -351,7 +329,7 @@ static void *can_read_thread() {
 				VCU2AI_Drive_R.data[6] = read_frame.data[6];
 				VCU2AI_Drive_R.data[7] = read_frame.data[7];
 				VCU2AI_Drive_R_fresh = TRUE;
-				VCU2AI_Drive_R_count++;
+				can_stats.VCU2AI_Drive_R_count++;
 				break;
 			}
 			case VCU2AI_STEER_ID : {
@@ -364,7 +342,7 @@ static void *can_read_thread() {
 				VCU2AI_Steer.data[6] = read_frame.data[6];
 				VCU2AI_Steer.data[7] = read_frame.data[7];
 				VCU2AI_Steer_fresh = TRUE;
-				VCU2AI_Steer_count++;
+				can_stats.VCU2AI_Steer_count++;
 				break;
 			}
 			case VCU2AI_BRAKE_ID : {
@@ -377,7 +355,7 @@ static void *can_read_thread() {
 				VCU2AI_Brake.data[6] = read_frame.data[6];
 				VCU2AI_Brake.data[7] = read_frame.data[7];
 				VCU2AI_Brake_fresh = TRUE;
-				VCU2AI_Brake_count++;
+				can_stats.VCU2AI_Brake_count++;
 				break;
 			}
 			case VCU2AI_WHEEL_SPEEDS_ID : {
@@ -390,7 +368,7 @@ static void *can_read_thread() {
 				VCU2AI_Wheel_speeds.data[6] = read_frame.data[6];
 				VCU2AI_Wheel_speeds.data[7] = read_frame.data[7];
 				VCU2AI_Wheel_speeds_fresh = TRUE;
-				VCU2AI_Wheel_speeds_count++;
+				can_stats.VCU2AI_Wheel_speeds_count++;
 				break;
 			}
 			case VCU2AI_WHEEL_COUNTS_ID : {
@@ -403,7 +381,7 @@ static void *can_read_thread() {
 				VCU2AI_Wheel_counts.data[6] = read_frame.data[6];
 				VCU2AI_Wheel_counts.data[7] = read_frame.data[7];
 				VCU2AI_Wheel_counts_fresh = TRUE;
-				VCU2AI_Wheel_counts_count++;
+				can_stats.VCU2AI_Wheel_counts_count++;
 				break;
 			}
 			case PCAN_GPS_BMC_ACCELERATION_ID : {
@@ -416,7 +394,7 @@ static void *can_read_thread() {
 				PCAN_GPS_BMC_Acceleration.data[6] = read_frame.data[6];
 				PCAN_GPS_BMC_Acceleration.data[7] = read_frame.data[7];
 				PCAN_GPS_BMC_Acceleration_fresh = TRUE;
-				PCAN_GPS_BMC_Acceleration_count++;
+				can_stats.PCAN_GPS_BMC_Acceleration_count++;
 				break;
 			}
 			case PCAN_GPS_BMC_MAGNETICFIELD_ID : {
@@ -429,7 +407,7 @@ static void *can_read_thread() {
 				PCAN_GPS_BMC_MagneticField.data[6] = read_frame.data[6];
 				PCAN_GPS_BMC_MagneticField.data[7] = read_frame.data[7];
 				PCAN_GPS_BMC_MagneticField_fresh = TRUE;
-				PCAN_GPS_BMC_MagneticField_count++;
+				can_stats.PCAN_GPS_BMC_MagneticField_count++;
 				break;
 			}
 			case PCAN_GPS_L3GD20_ROTATION_A_ID : {
@@ -442,7 +420,7 @@ static void *can_read_thread() {
 				PCAN_GPS_L3GD20_Rotation_A.data[6] = read_frame.data[6];
 				PCAN_GPS_L3GD20_Rotation_A.data[7] = read_frame.data[7];
 				PCAN_GPS_L3GD20_Rotation_A_fresh = TRUE;
-				PCAN_GPS_L3GD20_Rotation_A_count++;
+				can_stats.PCAN_GPS_L3GD20_Rotation_A_count++;
 				break;
 			}
 			case PCAN_GPS_L3GD20_ROTATION_B_ID : {
@@ -455,7 +433,7 @@ static void *can_read_thread() {
 				PCAN_GPS_L3GD20_Rotation_B.data[6] = read_frame.data[6];
 				PCAN_GPS_L3GD20_Rotation_B.data[7] = read_frame.data[7];
 				PCAN_GPS_L3GD20_Rotation_B_fresh = TRUE;
-				PCAN_GPS_L3GD20_Rotation_B_count++;
+				can_stats.PCAN_GPS_L3GD20_Rotation_B_count++;
 				break;
 			}
 			case PCAN_GPS_GPS_STATUS_ID : {
@@ -468,7 +446,7 @@ static void *can_read_thread() {
 				PCAN_GPS_GPS_Status.data[6] = read_frame.data[6];
 				PCAN_GPS_GPS_Status.data[7] = read_frame.data[7];
 				PCAN_GPS_GPS_Status_fresh = TRUE;
-				PCAN_GPS_GPS_Status_count++;
+				can_stats.PCAN_GPS_GPS_Status_count++;
 				break;
 			}
 			case PCAN_GPS_GPS_COURSESPEED_ID : {
@@ -481,7 +459,7 @@ static void *can_read_thread() {
 				PCAN_GPS_GPS_CourseSpeed.data[6] = read_frame.data[6];
 				PCAN_GPS_GPS_CourseSpeed.data[7] = read_frame.data[7];
 				PCAN_GPS_GPS_CourseSpeed_fresh = TRUE;
-				PCAN_GPS_GPS_CourseSpeed_count++;
+				can_stats.PCAN_GPS_GPS_CourseSpeed_count++;
 				break;
 			}
 			case PCAN_GPS_GPS_POSITIONLONGITUDE_ID : {
@@ -494,7 +472,7 @@ static void *can_read_thread() {
 				PCAN_GPS_GPS_Longitude.data[6] = read_frame.data[6];
 				PCAN_GPS_GPS_Longitude.data[7] = read_frame.data[7];
 				PCAN_GPS_GPS_Longitude_fresh = TRUE;
-				PCAN_GPS_GPS_Longitude_count++;
+				can_stats.PCAN_GPS_GPS_Longitude_count++;
 				break;
 			}
 			case PCAN_GPS_GPS_POSITIONLATITUDE_ID : {
@@ -507,7 +485,7 @@ static void *can_read_thread() {
 				PCAN_GPS_GPS_Latitude.data[6] = read_frame.data[6];
 				PCAN_GPS_GPS_Latitude.data[7] = read_frame.data[7];
 				PCAN_GPS_GPS_Latitude_fresh = TRUE;
-				PCAN_GPS_GPS_Latitude_count++;
+				can_stats.PCAN_GPS_GPS_Latitude_count++;
 				break;
 			}
 			case PCAN_GPS_GPS_POSITIONALTITUDE_ID : {
@@ -520,7 +498,7 @@ static void *can_read_thread() {
 				PCAN_GPS_GPS_Altitude.data[6] = read_frame.data[6];
 				PCAN_GPS_GPS_Altitude.data[7] = read_frame.data[7];
 				PCAN_GPS_GPS_Altitude_fresh = TRUE;
-				PCAN_GPS_GPS_Altitude_count++;
+				can_stats.PCAN_GPS_GPS_Altitude_count++;
 				break;
 			}
 			case PCAN_GPS_GPS_DELUSIONS_A_ID : {
@@ -533,7 +511,7 @@ static void *can_read_thread() {
 				PCAN_GPS_GPS_Delusions_A.data[6] = read_frame.data[6];
 				PCAN_GPS_GPS_Delusions_A.data[7] = read_frame.data[7];
 				PCAN_GPS_GPS_Delusions_A_fresh = TRUE;
-				PCAN_GPS_GPS_Delusions_A_count++;
+				can_stats.PCAN_GPS_GPS_Delusions_A_count++;
 				break;
 			}
 			case PCAN_GPS_GPS_DELUSIONS_B_ID : {
@@ -546,7 +524,7 @@ static void *can_read_thread() {
 				PCAN_GPS_GPS_Delusions_B.data[6] = read_frame.data[6];
 				PCAN_GPS_GPS_Delusions_B.data[7] = read_frame.data[7];
 				PCAN_GPS_GPS_Delusions_B_fresh = TRUE;
-				PCAN_GPS_GPS_Delusions_B_count++;
+				can_stats.PCAN_GPS_GPS_Delusions_B_count++;
 				break;
 			}
 			case PCAN_GPS_GPS_DATETIME_ID : {
@@ -559,12 +537,13 @@ static void *can_read_thread() {
 				PCAN_GPS_GPS_DateTime.data[6] = read_frame.data[6];
 				PCAN_GPS_GPS_DateTime.data[7] = read_frame.data[7];
 				PCAN_GPS_GPS_DateTime_fresh = TRUE;
-				PCAN_GPS_GPS_DateTime_count++;
+				can_stats.PCAN_GPS_GPS_DateTime_count++;
 				break;
 			}
 			default :
 			{
 				// TODO: set up filters so all unhandled CAN frames don't end up here...
+				can_stats.unhandled_frame_count++;
 				break;
 			}
 		}
@@ -577,6 +556,8 @@ static void *can_read_thread() {
 int fs_ai_api_init(char* CAN_interface, int debug, int simulate) {
 	static boolean_e initialised = FALSE;
 	int err;
+
+	fs_ai_api_clear_can_stats();
 	
 	if(initialised) {
 		if(debug_mode) { printf("Already initialised...\r\n"); }
@@ -781,6 +762,12 @@ void fs_ai_api_ai2vcu_set_data(fs_ai_api_ai2vcu *data) {
 
 	if(t_AI2VCU_HANDSHAKE_SEND_BIT < HANDSHAKE_SEND_BIT_OFF) { t_AI2VCU_HANDSHAKE_SEND_BIT = HANDSHAKE_SEND_BIT_OFF; }
 	if(t_AI2VCU_HANDSHAKE_SEND_BIT > HANDSHAKE_SEND_BIT_ON) { t_AI2VCU_HANDSHAKE_SEND_BIT = HANDSHAKE_SEND_BIT_ON; }
+
+	// braking has priority over torque - reject implausible inputs
+	if((t_AI2VCU_FRONT_BRAKE_PRESS_REQUEST_pct > 0.0f) || (t_AI2VCU_REAR_BRAKE_PRESS_REQUEST_pct > 0.0f)) {
+		t_AI2VCU_FRONT_AXLE_TORQUE_REQUEST_Nm = 0.0f;
+		t_AI2VCU_REAR_AXLE_TORQUE_REQUEST_Nm = 0.0f;
+	}
 
 	// set requests, converting where needed
 	AI2VCU_HANDSHAKE_BIT = t_AI2VCU_HANDSHAKE_SEND_BIT;
@@ -1013,4 +1000,14 @@ void fs_ai_api_gps_get_data(fs_ai_api_gps *data) {
 	data->GPS_UTC_Hour = GPS_UTC_Hour;
 	data->GPS_UTC_Minute = GPS_UTC_Minute;
 	data->GPS_UTC_Second = GPS_UTC_Second;
+}
+
+
+void fs_ai_api_clear_can_stats() {
+	memset(&can_stats, 0, sizeof(can_stats));
+}
+
+
+void fs_ai_api_get_can_stats(can_stats_struct_t *data) {
+	memcpy(&can_stats,data,sizeof(can_stats_struct_t));
 }

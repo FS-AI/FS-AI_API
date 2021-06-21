@@ -249,6 +249,28 @@ typedef volatile struct fs_ai_api_imu_struct {
 } fs_ai_api_imu;
 #endif
 
+typedef struct can_stats_struct {
+	volatile uint32_t VCU2AI_Status_count;
+	volatile uint32_t VCU2AI_Drive_F_count;
+	volatile uint32_t VCU2AI_Drive_R_count;
+	volatile uint32_t VCU2AI_Steer_count;
+	volatile uint32_t VCU2AI_Brake_count;
+	volatile uint32_t VCU2AI_Wheel_speeds_count;
+	volatile uint32_t VCU2AI_Wheel_counts_count;
+	volatile uint32_t PCAN_GPS_BMC_Acceleration_count;
+	volatile uint32_t PCAN_GPS_BMC_MagneticField_count;
+	volatile uint32_t PCAN_GPS_L3GD20_Rotation_A_count;
+	volatile uint32_t PCAN_GPS_L3GD20_Rotation_B_count;
+	volatile uint32_t PCAN_GPS_GPS_Status_count;
+	volatile uint32_t PCAN_GPS_GPS_CourseSpeed_count;
+	volatile uint32_t PCAN_GPS_GPS_Longitude_count;
+	volatile uint32_t PCAN_GPS_GPS_Latitude_count;
+	volatile uint32_t PCAN_GPS_GPS_Altitude_count;
+	volatile uint32_t PCAN_GPS_GPS_Delusions_A_count;
+	volatile uint32_t PCAN_GPS_GPS_Delusions_B_count;
+	volatile uint32_t PCAN_GPS_GPS_DateTime_count;
+	volatile uint32_t unhandled_frame_count;
+} can_stats_struct_t;
 
 int fs_ai_api_init(char *CAN_interface, int debug, int simulate);
 
@@ -258,6 +280,8 @@ void fs_ai_api_ai2vcu_set_data(fs_ai_api_ai2vcu *data);
 void fs_ai_api_imu_get_data(fs_ai_api_imu *data);
 void fs_ai_api_gps_get_data(fs_ai_api_gps *data);
 
+void fs_ai_api_clear_can_stats();
+void fs_ai_api_get_can_stats(can_stats_struct_t *data);
 
 #ifdef __cplusplus
 }
