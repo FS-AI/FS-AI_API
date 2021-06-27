@@ -88,10 +88,10 @@ static struct timespec last_set, this_set;
 
 // tx frames
 static struct can_frame AI2VCU_Status		= {0x510,8};
-static struct can_frame AI2VCU_Drive_F		= {0x511,8};
-static struct can_frame AI2VCU_Drive_R		= {0x512,8};
-static struct can_frame AI2VCU_Steer		= {0x513,8};
-static struct can_frame AI2VCU_Brake		= {0x514,8};
+static struct can_frame AI2VCU_Drive_F		= {0x511,4};
+static struct can_frame AI2VCU_Drive_R		= {0x512,4};
+static struct can_frame AI2VCU_Steer		= {0x513,2};
+static struct can_frame AI2VCU_Brake		= {0x514,2};
 
 // rx frames
 #define VCU2AI_STATUS_ID		0x520
@@ -1009,5 +1009,5 @@ void fs_ai_api_clear_can_stats() {
 
 
 void fs_ai_api_get_can_stats(can_stats_struct_t *data) {
-	memcpy(&can_stats,data,sizeof(can_stats_struct_t));
+	memcpy(data,&can_stats,sizeof(can_stats_struct_t));
 }
