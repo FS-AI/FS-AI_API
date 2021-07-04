@@ -5,7 +5,7 @@
 
 ## NOTE:
 
-### This *draft* commit of the **FS-AI_API** repository contains the source code for the 2021 software revision version of the IMechE FS-AI ADS-DV.
+### This *release candidate* of the **FS-AI_API** repository contains the source code for the 2021 software revision version of the IMechE FS-AI ADS-DV.
 
 It has been provided as a reference for teams to start implementing their vehicle interface code.
 
@@ -13,9 +13,9 @@ Previously the 2019 interface was provided as a library 'libfs-ai_api_amd64.a' i
 
 Source code for the library is now released under the MIT license so it may be compiled for any Linux architecture and modified if required.
 
-The 2021 FS-AI ADS-DV has an updated CAN interface.
+The 2021 FS-AI ADS-DV has an updated CAN interface to support the new vehicle feature of modulated hydraulic brakes. This interface is backward compatible to the 2019 vehicle.
 
-Further work will be done to improve the quality of the Console & Tester example programmes.
+Further work has been done to improve the Console & Tester example programmes.
 
 
 
@@ -52,7 +52,7 @@ NOTE: See `setup.sh` for information on configuring a CAN interface under Linux 
 
 
 ## How to use
-The library contains 3 functions plus associated data structures and enums:
+The library contains 7 functions plus associated data structures and enums:
 
 
 
@@ -77,17 +77,46 @@ Populates an instance of the `fs_ai_api_vcu2ai` data structure with the latest v
 ### `void fs_ai_api_ai2vcu_set_data(fs_ai_api_ai2vcu *data);`
 Transmits the CAN frames associated with the data passed in via the `fs_ai_api_ai2vcu` data structure.
 
-NOTE: This function must be called frequently enough to prevent the CAN timeout diagnostics of the vehicle ECU from triggering. However calling the function too frequently could overload the CAN bus so an internal timer prevents re-transmission of CAN frames at a period less than approx. 4ms. Calling this function every 5ms is optimal, data updates will be sent to the vehicle as fast as possible.
+NOTE: This function must be called frequently enough to prevent the CAN timeout diagnostics of the vehicle ECU from triggering. However calling the function too frequently could overload the CAN bus so an internal timer prevents re-transmission of CAN frames at a period less than approx. 8ms. Calling this function every 10ms is optimal, data updates will be sent to the vehicle as fast as possible.
+
+
+
+
+### `void fs_ai_api_imu_get_data(fs_ai_api_imu *data);`
+
+Populates an instance of the `fs_ai_api_imu` data structure with the latest values received from the PCAN-GPS fitted to the vehicle. Data receives are asynchronous - each CAN frame is buffered as it is received.
+
+
+
+
+### `void fs_ai_api_gps_get_data(fs_ai_api_gps *data);`
+
+Populates an instance of the `fs_ai_api_gps` data structure with the latest values received from the PCAN-GPS fitted to the vehicle. Data receives are asynchronous - each CAN frame is buffered as it is received.
+
+
+
+### `void fs_ai_api_get_can_stats(can_stats_t *data);`
+
+Populates an instance of the `can_stats_t` data structure with the latest values received from the vehicle. Use this for debugging CAN receives.
+
+
+
+### `void fs_ai_api_clear_can_stats();`
+
+Clears the `can_stats_t` data structure.
+
+
+## 
 
 
 
 
 ## Further Documentation
-Please refer to the full specification document for full information on the FS-AI ADS-DV CAN interface: [ADS-DV Software Interface Specification-v3.0.pdf](./Docs/ADS-DV_Software_Interface_Specification_v3.0.pdf).
+Please refer to the full specification document for full information on the FS-AI ADS-DV CAN interface: [ADS-DV Software Interface Specification-v4.0.pdf](./Docs/ADS-DV_Software_Interface_Specification_v4.0.pdf).
 
-(also published on the IMechE website as: https://www.imeche.org/docs/default-source/1-oscar/formula-student/2021/forms/ai/ads-dv-software-interface-specification-v3-0.pdf?sfvrsn=2 ).
+(also published on the IMechE website as: https://www.imeche.org/docs/default-source/1-oscar/formula-student/2021/forms/ai/ads-dv-software-interface-specification-v4-0.pdf?sfvrsn=2 ).
 
-The referenced CAN database can be found here: [adsdv_2021_vcu_ai_interface_v1.dbc](./Docs/adsdv_2021_vcu_ai_interface_v1.dbc).
+The referenced CAN database can be found here: [ADSDV_2021_VCU_AI_interface_v2.dbc](./Docs/ADSDV_2021_VCU_AI_interface_v2.dbc).
 
 This software library exposes only those aspects of the full interface that are deemed essential for the 2021 Formula Student AI DDT competition using the FS-AI ADS-DV.
 

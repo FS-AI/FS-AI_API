@@ -137,7 +137,7 @@ static struct can_frame PCAN_GPS_GPS_Delusions_B;
 static struct can_frame PCAN_GPS_GPS_DateTime;
 
 // static local data
-static can_stats_struct_t can_stats;
+static can_stats_t can_stats;
 
 static volatile boolean_e VCU2AI_Status_fresh = FALSE;
 static volatile boolean_e VCU2AI_Drive_F_fresh = FALSE;
@@ -1028,11 +1028,11 @@ void fs_ai_api_gps_get_data(fs_ai_api_gps *data) {
 }
 
 
-void fs_ai_api_clear_can_stats() {
-	memset(&can_stats, 0, sizeof(can_stats));
+void fs_ai_api_get_can_stats(can_stats_t *data) {
+	memcpy(data,&can_stats,sizeof(can_stats_t));
 }
 
 
-void fs_ai_api_get_can_stats(can_stats_struct_t *data) {
-	memcpy(data,&can_stats,sizeof(can_stats_struct_t));
+void fs_ai_api_clear_can_stats() {
+	memset(&can_stats, 0, sizeof(can_stats_t));
 }
