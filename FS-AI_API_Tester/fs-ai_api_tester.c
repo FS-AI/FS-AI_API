@@ -78,8 +78,8 @@ int main(int argc, char** argv) {
 		printf("VCU2AI_FR_PULSE_COUNT          %5u    \r\n",vcu2ai_data.VCU2AI_FR_PULSE_COUNT);
 		printf("VCU2AI_RL_PULSE_COUNT          %5u    \r\n",vcu2ai_data.VCU2AI_RL_PULSE_COUNT);
 		printf("VCU2AI_RR_PULSE_COUNT          %5u    \r\n",vcu2ai_data.VCU2AI_RR_PULSE_COUNT);
-												
-		// printf("\033[21A");  // move cursor back up
+
+		// TODO: add GPS & IMU data
 
 		// send some data
 		if(HANDSHAKE_RECEIVE_BIT_OFF == vcu2ai_data.VCU2AI_HANDSHAKE_RECEIVE_BIT) {
@@ -90,9 +90,9 @@ int main(int argc, char** argv) {
 			printf("HANDSHAKE_BIT error\r\n");
 		}
 
+		ai2vcu_data.AI2VCU_MISSION_STATUS = MISSION_SELECTED;
 		ai2vcu_data.AI2VCU_DIRECTION_REQUEST = DIRECTION_FORWARD;
 		ai2vcu_data.AI2VCU_ESTOP_REQUEST = ESTOP_NO;
-		ai2vcu_data.AI2VCU_MISSION_STATUS = MISSION_SELECTED;
 		ai2vcu_data.AI2VCU_STEER_ANGLE_REQUEST_deg = 9.9f;
 		ai2vcu_data.AI2VCU_AXLE_SPEED_REQUEST_rpm = 999.0f;
 		ai2vcu_data.AI2VCU_AXLE_TORQUE_REQUEST_Nm = 99.0f;
@@ -100,8 +100,8 @@ int main(int argc, char** argv) {
 
 		fs_ai_api_ai2vcu_set_data(&ai2vcu_data);
 
-		// repeat roughly every 5ms
-		usleep(5000);
+		// repeat roughly every 10ms
+		usleep(10000);
 	}
 
 	return(0);

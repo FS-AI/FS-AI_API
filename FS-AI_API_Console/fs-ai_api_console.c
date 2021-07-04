@@ -46,7 +46,7 @@ static void *loop_thread();
 static fs_ai_api_ai2vcu ai2vcu_data;	// assume initialised to zeros
 static char inputs[10] = "", outputs[80] = "                                        ";
 static int data = 0;
-static int timing_us = 5000;
+static int timing_us = 10000;
 
 
 int main(int argc, char** argv) {
@@ -154,8 +154,6 @@ static void *loop_thread() {
 		printf("                                         \r\n");
 		printf("%s                                       \r\n",outputs);
 
-		// printf("\033[27A");  // move cursor back up
-
 		// send some data
 		if(HANDSHAKE_RECEIVE_BIT_OFF == vcu2ai_data.VCU2AI_HANDSHAKE_RECEIVE_BIT) {
 			ai2vcu_data.AI2VCU_HANDSHAKE_SEND_BIT = HANDSHAKE_SEND_BIT_OFF;
@@ -167,7 +165,7 @@ static void *loop_thread() {
 
 		fs_ai_api_ai2vcu_set_data(&ai2vcu_data);
 
-		// repeat roughly every 5ms
+		// repeat according to loop timing (default roughly every 10ms)
 		usleep(timing_us);
 	}
 

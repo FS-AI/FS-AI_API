@@ -712,9 +712,16 @@ void fs_ai_api_ai2vcu_set_data(fs_ai_api_ai2vcu *data) {
 	float							t_AI2VCU_FRONT_BRAKE_PRESS_REQUEST_pct = 0;
 	float							t_AI2VCU_REAR_BRAKE_PRESS_REQUEST_pct = 0;
 
-	float t_FRONT_AXLE_TORQUE_MAX = (0.1f*VCU2AI_FRONT_AXLE_TORQUE_MAX_raw);
-	float t_REAR_AXLE_TORQUE_MAX = (0.1f*VCU2AI_REAR_AXLE_TORQUE_MAX_raw);
-	float t_STEER_ANGLE_MAX = (0.1f*VCU2AI_STEER_ANGLE_MAX_raw);
+	float t_FRONT_AXLE_TORQUE_MAX_Nm = (0.1f*VCU2AI_FRONT_AXLE_TORQUE_MAX_raw);
+	float t_REAR_AXLE_TORQUE_MAX_Nm = (0.1f*VCU2AI_REAR_AXLE_TORQUE_MAX_raw);
+	float t_STEER_ANGLE_MAX_deg = (0.1f*VCU2AI_STEER_ANGLE_MAX_raw);
+
+	uint16_t t_fastest_wheel_rpm = 0;
+
+	if(VCU2AI_FL_WHEEL_SPEED_rpm > t_fastest_wheel_rpm) { t_fastest_wheel_rpm = VCU2AI_FL_WHEEL_SPEED_rpm; }
+	if(VCU2AI_FR_WHEEL_SPEED_rpm > t_fastest_wheel_rpm) { t_fastest_wheel_rpm = VCU2AI_FR_WHEEL_SPEED_rpm; }
+	if(VCU2AI_RL_WHEEL_SPEED_rpm > t_fastest_wheel_rpm) { t_fastest_wheel_rpm = VCU2AI_RL_WHEEL_SPEED_rpm; }
+	if(VCU2AI_RR_WHEEL_SPEED_rpm > t_fastest_wheel_rpm) { t_fastest_wheel_rpm = VCU2AI_RR_WHEEL_SPEED_rpm; }
 
 	t_AI2VCU_MISSION_STATUS = data->AI2VCU_MISSION_STATUS;
 	t_AI2VCU_DIRECTION_REQUEST = data->AI2VCU_DIRECTION_REQUEST;
@@ -728,9 +735,27 @@ void fs_ai_api_ai2vcu_set_data(fs_ai_api_ai2vcu *data) {
 	t_AI2VCU_FRONT_BRAKE_PRESS_REQUEST_pct = data->AI2VCU_BRAKE_PRESS_REQUEST_pct;
 	t_AI2VCU_REAR_BRAKE_PRESS_REQUEST_pct = data->AI2VCU_BRAKE_PRESS_REQUEST_pct;
 
+	// additional torque limit to maintain constant electrical power and minimise risk of over-current trip
+	if(t_fastest_wheel_rpm > 700) {
+		if(t_FRONT_AXLE_TORQUE_MAX_Nm > 50.0f) { t_FRONT_AXLE_TORQUE_MAX_Nm = 50.0f; }
+		if(t_REAR_AXLE_TORQUE_MAX_Nm > 50.0f) { t_REAR_AXLE_TORQUE_MAX_Nm = 50.0f; }
+	} else if(t_fastest_wheel_rpm > 600) {
+		if(t_FRONT_AXLE_TORQUE_MAX_Nm > 85.0f) { t_FRONT_AXLE_TORQUE_MAX_Nm = 85.0f; }
+		if(t_REAR_AXLE_TORQUE_MAX_Nm > 85.0f) { t_REAR_AXLE_TORQUE_MAX_Nm = 85.0f; }
+	} else if(t_fastest_wheel_rpm > 500) {
+		if(t_FRONT_AXLE_TORQUE_MAX_Nm > 100.0f) { t_FRONT_AXLE_TORQUE_MAX_Nm = 100.0f; }
+		if(t_REAR_AXLE_TORQUE_MAX_Nm > 100.0f) { t_REAR_AXLE_TORQUE_MAX_Nm = 100.0f; }
+	} else if(t_fastest_wheel_rpm > 400) {
+		if(t_FRONT_AXLE_TORQUE_MAX_Nm > 120.0f) { t_FRONT_AXLE_TORQUE_MAX_Nm = 120.0f; }
+		if(t_REAR_AXLE_TORQUE_MAX_Nm > 120.0f) { t_REAR_AXLE_TORQUE_MAX_Nm = 120.0f; }
+	} else if(t_fastest_wheel_rpm > 300) {
+		if(t_FRONT_AXLE_TORQUE_MAX_Nm > 150.0f) { t_FRONT_AXLE_TORQUE_MAX_Nm = 150.0f; }
+		if(t_REAR_AXLE_TORQUE_MAX_Nm > 150.0f) { t_REAR_AXLE_TORQUE_MAX_Nm = 150.0f; }
+	}
+
 	// validate the 'float' requests
-	if(t_AI2VCU_STEER_ANGLE_REQUEST_deg > t_STEER_ANGLE_MAX) { t_AI2VCU_STEER_ANGLE_REQUEST_deg = t_STEER_ANGLE_MAX; }
-	if(t_AI2VCU_STEER_ANGLE_REQUEST_deg < (-1.0f*t_STEER_ANGLE_MAX)) { t_AI2VCU_STEER_ANGLE_REQUEST_deg = (-1.0f*t_STEER_ANGLE_MAX); }
+	if(t_AI2VCU_STEER_ANGLE_REQUEST_deg > t_STEER_ANGLE_MAX_deg) { t_AI2VCU_STEER_ANGLE_REQUEST_deg = t_STEER_ANGLE_MAX_deg; }
+	if(t_AI2VCU_STEER_ANGLE_REQUEST_deg < (-1.0f*t_STEER_ANGLE_MAX_deg)) { t_AI2VCU_STEER_ANGLE_REQUEST_deg = (-1.0f*t_STEER_ANGLE_MAX_deg); }
 
 	if(t_AI2VCU_FRONT_MOTOR_SPEED_REQUEST_rpm > MOTOR_MAX_RPM) { t_AI2VCU_FRONT_MOTOR_SPEED_REQUEST_rpm = MOTOR_MAX_RPM; }
 	if(t_AI2VCU_FRONT_MOTOR_SPEED_REQUEST_rpm < 0.0f) { t_AI2VCU_FRONT_MOTOR_SPEED_REQUEST_rpm = 0.0f; }
@@ -738,10 +763,10 @@ void fs_ai_api_ai2vcu_set_data(fs_ai_api_ai2vcu *data) {
 	if(t_AI2VCU_REAR_MOTOR_SPEED_REQUEST_rpm > MOTOR_MAX_RPM) { t_AI2VCU_REAR_MOTOR_SPEED_REQUEST_rpm = MOTOR_MAX_RPM; }
 	if(t_AI2VCU_REAR_MOTOR_SPEED_REQUEST_rpm < 0.0f) { t_AI2VCU_REAR_MOTOR_SPEED_REQUEST_rpm = 0.0f; }
 
-	if(t_AI2VCU_FRONT_AXLE_TORQUE_REQUEST_Nm > t_FRONT_AXLE_TORQUE_MAX) { t_AI2VCU_FRONT_AXLE_TORQUE_REQUEST_Nm = t_FRONT_AXLE_TORQUE_MAX; }
+	if(t_AI2VCU_FRONT_AXLE_TORQUE_REQUEST_Nm > t_FRONT_AXLE_TORQUE_MAX_Nm) { t_AI2VCU_FRONT_AXLE_TORQUE_REQUEST_Nm = t_FRONT_AXLE_TORQUE_MAX_Nm; }
 	if(t_AI2VCU_FRONT_AXLE_TORQUE_REQUEST_Nm < 0.0f) { t_AI2VCU_FRONT_AXLE_TORQUE_REQUEST_Nm = 0.0f; }
 
-	if(t_AI2VCU_REAR_AXLE_TORQUE_REQUEST_Nm > t_REAR_AXLE_TORQUE_MAX) { t_AI2VCU_REAR_AXLE_TORQUE_REQUEST_Nm = t_REAR_AXLE_TORQUE_MAX; }
+	if(t_AI2VCU_REAR_AXLE_TORQUE_REQUEST_Nm > t_REAR_AXLE_TORQUE_MAX_Nm) { t_AI2VCU_REAR_AXLE_TORQUE_REQUEST_Nm = t_REAR_AXLE_TORQUE_MAX_Nm; }
 	if(t_AI2VCU_REAR_AXLE_TORQUE_REQUEST_Nm < 0.0f) { t_AI2VCU_REAR_AXLE_TORQUE_REQUEST_Nm = 0.0f; }
 
 	if(t_AI2VCU_FRONT_BRAKE_PRESS_REQUEST_pct > 100.0f) { t_AI2VCU_FRONT_BRAKE_PRESS_REQUEST_pct = 100.0f; }
