@@ -52,5 +52,6 @@ Mkfile.old
 dkms.conf
 
 # Extras
+.vscode/
 FS-AI_API_Console/fs-ai_api_console
 FS-AI_API_Tester/fs-ai_api_tester
