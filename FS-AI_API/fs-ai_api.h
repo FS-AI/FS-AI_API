@@ -77,22 +77,22 @@ typedef enum fs_ai_api_res_go_signal_bit_e {
 
 
 #ifdef __cplusplus
-typedef volatile struct alignas(4) fs_ai_api_vcu2ai_struct {
-	volatile fs_ai_api_handshake_receive_bit_e	VCU2AI_HANDSHAKE_RECEIVE_BIT : 32;
-	volatile fs_ai_api_res_go_signal_bit_e		VCU2AI_RES_GO_SIGNAL : 32;
-	volatile fs_ai_api_as_state_e				VCU2AI_AS_STATE : 32;
-	volatile fs_ai_api_ami_state_e				VCU2AI_AMI_STATE : 32;
-	volatile float								VCU2AI_STEER_ANGLE_deg;
-	volatile float								VCU2AI_BRAKE_PRESS_F_pct;
-	volatile float								VCU2AI_BRAKE_PRESS_R_pct;
-	volatile float								VCU2AI_FL_WHEEL_SPEED_rpm;
-	volatile float								VCU2AI_FR_WHEEL_SPEED_rpm;
-	volatile float								VCU2AI_RL_WHEEL_SPEED_rpm;
-	volatile float								VCU2AI_RR_WHEEL_SPEED_rpm;
-	volatile uint16_t							VCU2AI_FL_PULSE_COUNT : 32;
-	volatile uint16_t							VCU2AI_FR_PULSE_COUNT : 32;
-	volatile uint16_t							VCU2AI_RL_PULSE_COUNT : 32;
-	volatile uint16_t							VCU2AI_RR_PULSE_COUNT : 32;
+typedef volatile struct fs_ai_api_vcu2ai_struct {
+	alignas(4) volatile fs_ai_api_handshake_receive_bit_e	VCU2AI_HANDSHAKE_RECEIVE_BIT;
+	alignas(4) volatile fs_ai_api_res_go_signal_bit_e		VCU2AI_RES_GO_SIGNAL;
+	alignas(4) volatile fs_ai_api_as_state_e				VCU2AI_AS_STATE;
+	alignas(4) volatile fs_ai_api_ami_state_e				VCU2AI_AMI_STATE;
+	alignas(4) volatile float								VCU2AI_STEER_ANGLE_deg;
+	alignas(4) volatile float								VCU2AI_BRAKE_PRESS_F_pct;
+	alignas(4) volatile float								VCU2AI_BRAKE_PRESS_R_pct;
+	alignas(4) volatile float								VCU2AI_FL_WHEEL_SPEED_rpm;
+	alignas(4) volatile float								VCU2AI_FR_WHEEL_SPEED_rpm;
+	alignas(4) volatile float								VCU2AI_RL_WHEEL_SPEED_rpm;
+	alignas(4) volatile float								VCU2AI_RR_WHEEL_SPEED_rpm;
+	alignas(4) volatile uint16_t							VCU2AI_FL_PULSE_COUNT;
+	alignas(4) volatile uint16_t							VCU2AI_FR_PULSE_COUNT;
+	alignas(4) volatile uint16_t							VCU2AI_RL_PULSE_COUNT;
+	alignas(4) volatile uint16_t							VCU2AI_RR_PULSE_COUNT;
 } fs_ai_api_vcu2ai;
 #else
 typedef volatile struct fs_ai_api_vcu2ai_struct {
@@ -142,15 +142,15 @@ typedef enum fs_ai_api_handshake_send_bit_e {
 
 
 #ifdef __cplusplus
-typedef volatile struct alignas(4) fs_ai_api_ai2vcu_struct {
-	volatile fs_ai_api_mission_status_e		AI2VCU_MISSION_STATUS : 32;
-	volatile fs_ai_api_direction_request_e	AI2VCU_DIRECTION_REQUEST : 32;
-	volatile fs_ai_api_estop_request_e		AI2VCU_ESTOP_REQUEST : 32;
-	volatile fs_ai_api_handshake_send_bit_e	AI2VCU_HANDSHAKE_SEND_BIT : 32;
-	volatile float							AI2VCU_STEER_ANGLE_REQUEST_deg;
-	volatile float							AI2VCU_AXLE_SPEED_REQUEST_rpm;
-	volatile float							AI2VCU_AXLE_TORQUE_REQUEST_Nm;
-	volatile float							AI2VCU_BRAKE_PRESS_REQUEST_pct;
+typedef volatile struct fs_ai_api_ai2vcu_struct {
+	alignas(4) volatile fs_ai_api_mission_status_e		AI2VCU_MISSION_STATUS;
+	alignas(4) volatile fs_ai_api_direction_request_e	AI2VCU_DIRECTION_REQUEST;
+	alignas(4) volatile fs_ai_api_estop_request_e		AI2VCU_ESTOP_REQUEST;
+	alignas(4) volatile fs_ai_api_handshake_send_bit_e	AI2VCU_HANDSHAKE_SEND_BIT;
+	alignas(4) volatile float							AI2VCU_STEER_ANGLE_REQUEST_deg;
+	alignas(4) volatile float							AI2VCU_AXLE_SPEED_REQUEST_rpm;
+	alignas(4) volatile float							AI2VCU_AXLE_TORQUE_REQUEST_Nm;
+	alignas(4) volatile float							AI2VCU_BRAKE_PRESS_REQUEST_pct;
 } fs_ai_api_ai2vcu;
 #else
 typedef volatile struct fs_ai_api_ai2vcu_struct {
@@ -167,28 +167,28 @@ typedef volatile struct fs_ai_api_ai2vcu_struct {
 
 
 #ifdef __cplusplus
-typedef volatile struct alignas(4) fs_ai_api_gps_struct {
-	volatile uint8_t	GPS_AntennaStatus;
-	volatile uint8_t	GPS_NumSatellites;
-	volatile uint8_t	GPS_NavigationMethod;
-	volatile float		GPS_Course_deg;
-	volatile float		GPS_Speed_kmh;
-	volatile float		GPS_Longitude_Minutes;
-	volatile uint16_t	GPS_Longitude_Degree;
-	volatile uint8_t	GPS_Longitude_IndicatorEW;
-	volatile float		GPS_Latitude_Minutes;
-	volatile uint16_t	GPS_Latitude_Degree;
-	volatile uint8_t	GPS_Latitude_IndicatorNS;
-	volatile float		GPS_Altitude;
-	volatile float		GPS_PDOP;
-	volatile float		GPS_HDOP;
-	volatile float		GPS_VDOP;
-	volatile uint8_t	GPS_UTC_Year;
-	volatile uint8_t	GPS_UTC_Month;
-	volatile uint8_t	GPS_UTC_DayOfMonth;
-	volatile uint8_t	GPS_UTC_Hour;
-	volatile uint8_t	GPS_UTC_Minute;
-	volatile uint8_t	GPS_UTC_Second;
+typedef volatile struct fs_ai_api_gps_struct {
+	alignas(4) volatile uint8_t	GPS_AntennaStatus;
+	alignas(4) volatile uint8_t	GPS_NumSatellites;
+	alignas(4) volatile uint8_t	GPS_NavigationMethod;
+	alignas(4) volatile float		GPS_Course_deg;
+	alignas(4) volatile float		GPS_Speed_kmh;
+	alignas(4) volatile float		GPS_Longitude_Minutes;
+	alignas(4) volatile uint16_t	GPS_Longitude_Degree;
+	alignas(4) volatile uint8_t	GPS_Longitude_IndicatorEW;
+	alignas(4) volatile float		GPS_Latitude_Minutes;
+	alignas(4) volatile uint16_t	GPS_Latitude_Degree;
+	alignas(4) volatile uint8_t	GPS_Latitude_IndicatorNS;
+	alignas(4) volatile float		GPS_Altitude;
+	alignas(4) volatile float		GPS_PDOP;
+	alignas(4) volatile float		GPS_HDOP;
+	alignas(4) volatile float		GPS_VDOP;
+	alignas(4) volatile uint8_t	GPS_UTC_Year;
+	alignas(4) volatile uint8_t	GPS_UTC_Month;
+	alignas(4) volatile uint8_t	GPS_UTC_DayOfMonth;
+	alignas(4) volatile uint8_t	GPS_UTC_Hour;
+	alignas(4) volatile uint8_t	GPS_UTC_Minute;
+	alignas(4) volatile uint8_t	GPS_UTC_Second;
 } fs_ai_api_gps;
 #else
 typedef volatile struct fs_ai_api_gps_struct {
@@ -218,19 +218,19 @@ typedef volatile struct fs_ai_api_gps_struct {
 
 
 #ifdef __cplusplus
-typedef volatile struct alignas(4) fs_ai_api_imu_struct {
-	volatile float		IMU_Acceleration_X_mG;
-	volatile float		IMU_Acceleration_Y_mG;
-	volatile float		IMU_Acceleration_Z_mG;
-	volatile float		IMU_Temperature_degC;
-	volatile uint8_t	IMU_VerticalAxis;
-	volatile uint8_t	IMU_Orientation;
-	volatile float		IMU_MagneticField_X_uT;
-	volatile float		IMU_MagneticField_Y_uT;
-	volatile float		IMU_MagneticField_Z_uT;
-	volatile float		IMU_Rotation_X_degps;
-	volatile float		IMU_Rotation_Y_degps;
-	volatile float		IMU_Rotation_Z_degps;
+typedef volatile struct fs_ai_api_imu_struct {
+	alignas(4) volatile float		IMU_Acceleration_X_mG;
+	alignas(4) volatile float		IMU_Acceleration_Y_mG;
+	alignas(4) volatile float		IMU_Acceleration_Z_mG;
+	alignas(4) volatile float		IMU_Temperature_degC;
+	alignas(4) volatile uint8_t	IMU_VerticalAxis;
+	alignas(4) volatile uint8_t	IMU_Orientation;
+	alignas(4) volatile float		IMU_MagneticField_X_uT;
+	alignas(4) volatile float		IMU_MagneticField_Y_uT;
+	alignas(4) volatile float		IMU_MagneticField_Z_uT;
+	alignas(4) volatile float		IMU_Rotation_X_degps;
+	alignas(4) volatile float		IMU_Rotation_Y_degps;
+	alignas(4) volatile float		IMU_Rotation_Z_degps;
 } fs_ai_api_imu;
 #else
 typedef volatile struct fs_ai_api_imu_struct {
