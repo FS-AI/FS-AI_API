@@ -78,10 +78,10 @@ typedef enum fs_ai_api_res_go_signal_bit_e {
 
 #ifdef __cplusplus
 typedef volatile struct alignas(4) fs_ai_api_vcu2ai_struct {
-	volatile fs_ai_api_handshake_receive_bit_e	VCU2AI_HANDSHAKE_RECEIVE_BIT;
-	volatile fs_ai_api_res_go_signal_bit_e		VCU2AI_RES_GO_SIGNAL;
-	volatile fs_ai_api_as_state_e				VCU2AI_AS_STATE;
-	volatile fs_ai_api_ami_state_e				VCU2AI_AMI_STATE;
+	volatile fs_ai_api_handshake_receive_bit_e	VCU2AI_HANDSHAKE_RECEIVE_BIT : 32;
+	volatile fs_ai_api_res_go_signal_bit_e		VCU2AI_RES_GO_SIGNAL : 32;
+	volatile fs_ai_api_as_state_e				VCU2AI_AS_STATE : 32;
+	volatile fs_ai_api_ami_state_e				VCU2AI_AMI_STATE : 32;
 	volatile float								VCU2AI_STEER_ANGLE_deg;
 	volatile float								VCU2AI_BRAKE_PRESS_F_pct;
 	volatile float								VCU2AI_BRAKE_PRESS_R_pct;
@@ -89,10 +89,10 @@ typedef volatile struct alignas(4) fs_ai_api_vcu2ai_struct {
 	volatile float								VCU2AI_FR_WHEEL_SPEED_rpm;
 	volatile float								VCU2AI_RL_WHEEL_SPEED_rpm;
 	volatile float								VCU2AI_RR_WHEEL_SPEED_rpm;
-	volatile uint16_t							VCU2AI_FL_PULSE_COUNT;
-	volatile uint16_t							VCU2AI_FR_PULSE_COUNT;
-	volatile uint16_t							VCU2AI_RL_PULSE_COUNT;
-	volatile uint16_t							VCU2AI_RR_PULSE_COUNT;
+	volatile uint16_t							VCU2AI_FL_PULSE_COUNT : 32;
+	volatile uint16_t							VCU2AI_FR_PULSE_COUNT : 32;
+	volatile uint16_t							VCU2AI_RL_PULSE_COUNT : 32;
+	volatile uint16_t							VCU2AI_RR_PULSE_COUNT : 32;
 } fs_ai_api_vcu2ai;
 #else
 typedef volatile struct fs_ai_api_vcu2ai_struct {
@@ -143,10 +143,10 @@ typedef enum fs_ai_api_handshake_send_bit_e {
 
 #ifdef __cplusplus
 typedef volatile struct alignas(4) fs_ai_api_ai2vcu_struct {
-	volatile fs_ai_api_mission_status_e		AI2VCU_MISSION_STATUS;
-	volatile fs_ai_api_direction_request_e	AI2VCU_DIRECTION_REQUEST;
-	volatile fs_ai_api_estop_request_e		AI2VCU_ESTOP_REQUEST;
-	volatile fs_ai_api_handshake_send_bit_e	AI2VCU_HANDSHAKE_SEND_BIT;
+	volatile fs_ai_api_mission_status_e		AI2VCU_MISSION_STATUS : 32;
+	volatile fs_ai_api_direction_request_e	AI2VCU_DIRECTION_REQUEST : 32;
+	volatile fs_ai_api_estop_request_e		AI2VCU_ESTOP_REQUEST : 32;
+	volatile fs_ai_api_handshake_send_bit_e	AI2VCU_HANDSHAKE_SEND_BIT : 32;
 	volatile float							AI2VCU_STEER_ANGLE_REQUEST_deg;
 	volatile float							AI2VCU_AXLE_SPEED_REQUEST_rpm;
 	volatile float							AI2VCU_AXLE_TORQUE_REQUEST_Nm;
