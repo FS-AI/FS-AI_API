@@ -281,7 +281,9 @@ static volatile uint8_t GPS_UTC_Second = 0;
 
 
 // functions
-static void *can_read_thread() {
+static void *can_read_thread(void *arg) {
+	(void)arg;
+
 	struct can_frame read_frame;
 	
 	while(1)
